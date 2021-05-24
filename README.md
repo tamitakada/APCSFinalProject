@@ -1,6 +1,6 @@
 # APCSFinalProject
 
-Group Name:
+Group Name: Neon Racers
 
 Members:
 Sadid Ethun, Tami Takada
