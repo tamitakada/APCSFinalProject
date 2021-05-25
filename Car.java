@@ -54,4 +54,21 @@ public class Car {
   public double getWeight() {
     return weight;
   }
+
+  //Set methods
+  public void setPower(double power) {
+    this.power = power;
+  }
+
+  public void setGrip(double grip) {
+    this.grip = grip;
+  }
+
+  public void setAero(double aero) {
+    this.aero = aero;
+  }
+
+  public void setWeight(double weight) {
+    this.weight = weight;
+  }
 }
