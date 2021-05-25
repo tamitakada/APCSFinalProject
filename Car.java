@@ -8,7 +8,7 @@ public class Car {
   // private Gear gear;
 
   //Car appearance
-  // private Livery livery;
+  private Livery livery;
 
   //Car parts
   // private Tire tire;
