@@ -18,6 +18,15 @@ public class Car {
   // private Suspension suspension;
   // private Transmission transmission;
 
+  public Car() {
+    this.power = 0; this.grip = 0; this.aero = 0; this.weight = 0;
+  }
+
+  public Car(double power, double grip, double aero, double weight) {
+    this.power = power; this.grip = grip;
+    this.aero = aero; this.weight = weight;
+  }
+
   public void move() {
 
   }
