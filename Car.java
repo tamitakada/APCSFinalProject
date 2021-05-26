@@ -39,6 +39,7 @@ public class Car {
 
   }
 
+  //Get methods
   public double getPower() {
     return power;
   }
@@ -55,14 +56,14 @@ public class Car {
     return weight;
   }
 
-  //Set methods
+  //Set methods for properties
   public void setPower(double power) {
     this.power = power;
   }
 
   public void setGrip(double grip) {
     this.grip = grip;
-  } 
+  }
 
   public void setAero(double aero) {
     this.aero = aero;
@@ -71,4 +72,31 @@ public class Car {
   public void setWeight(double weight) {
     this.weight = weight;
   }
+
+  //Set methods for parts
+  /*
+  public void setTire(Tire tire) {
+    this.tire = tire;
+  }
+
+  public void setFrontWing(FrontWing frontWing) {
+    this.frontWing = frontWing;
+  }
+
+  public void setRearWing(RearWing rearWing) {
+    this.rearWing = rearWing;
+  }
+
+  public void setEngine(Engine engine) {
+    this.engine = engine;
+  }
+
+  public void setSuspension(Suspension suspension) {
+    this.suspension = suspension;
+  }
+
+  public void setTransmission(Transmission transmission) {
+    this.transmission = transmission;
+  }
+  */
 }
