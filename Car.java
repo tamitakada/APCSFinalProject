@@ -62,7 +62,7 @@ public class Car {
 
   public void setGrip(double grip) {
     this.grip = grip;
-  }
+  } 
 
   public void setAero(double aero) {
     this.aero = aero;
