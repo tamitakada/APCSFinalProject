@@ -35,8 +35,9 @@ public class Car {
 
   }
 
-  public void display() {
-
+  public void display(float x, float y) {
+    PImage car = livery.getImage();
+    image(car, x, y);
   }
 
   //Get methods
