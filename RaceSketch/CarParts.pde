@@ -3,7 +3,7 @@ public class CarParts {
   private double level;
   
   public CarParts() {
-    level = 0;
+    level = 1;
   }
   
   public void incLevel() {
@@ -18,10 +18,6 @@ public class CarParts {
   
   public double getLevel() {
      return level;
-  }
-  
-  public double getVal() {
-    return 650;
   }
   
 }
