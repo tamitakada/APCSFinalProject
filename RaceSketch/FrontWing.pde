@@ -1,4 +1,4 @@
-public class FrontWing extends CarParts {
+public class FrontWing extends CarPart {
    
   public double aero() {
     return 2000 + (100 * (getLevel() - 1));

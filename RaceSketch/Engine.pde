@@ -1,4 +1,4 @@
-public class Engine extends CarParts {
+public class Engine extends CarPart {
   
   public double power() {
     return 800 + (50 * (getLevel() - 1));

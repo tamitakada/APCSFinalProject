@@ -1,4 +1,4 @@
-public class Suspension extends CarParts {
+public class Suspension extends CarPart {
    
   public double aero() {
     return 1000 + (100 * (getLevel() - 1));

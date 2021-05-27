@@ -1,8 +1,8 @@
-public class CarParts {
+public class CarPart {
  
   private double level;
   
-  public CarParts() {
+  public CarPart() {
     level = 1;
   }
   
