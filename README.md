@@ -13,5 +13,5 @@ https://docs.google.com/document/d/197xKZP5jWDhOhgxDIRfmsnOuFQcctcU6FOOGl_MOomk/
 
 Development Log
 
-[5/26] Tami - I moved everything to Processing and added the set methods for each car part.
-[5/26] Sadid - I created and wrote the CarParts class as well as all the individual classes for the car parts. 
+[5/26] Tami - I moved everything to Processing and added the set methods for each car part.  
+[5/26] Sadid - I created and wrote the CarParts class as well as all the individual classes for the car parts.   
