@@ -4,13 +4,22 @@ public class Button {
   private float rectWidth;
   private float rectHeight;
   private color rectColor;
-  private String label;
   
-  public Button(float x, float y, float rectWidth, float rectHeight, color rectColor, String label) {
+  private String label;
+  private color textColor;
+  private int textSize;
+  
+  public Button(float x, float y, float rectWidth, float rectHeight, color rectColor) {
     this.x = x; this.y = y;
     this.rectWidth = rectWidth; this.rectHeight = rectHeight;
     this.rectColor = rectColor;
-    this.label = label;
+    label = ""; textColor = 255; textSize = 20;
+  }
+  
+  public void setLabel(String text, color textColor, int size) {
+    label = text;
+    this.textColor = textColor;
+    textSize = size;
   }
   
   public boolean click(float x, float y) {
@@ -22,10 +31,10 @@ public class Button {
     fill(rectColor);
     rectMode(CENTER);
     rect(x, y, rectWidth, rectHeight, 10);
-    fill(255);
+    fill(textColor);
     textAlign(CENTER, CENTER);
     PFont myFont = createFont("Raleway-Regular.ttf", 32);
-    textFont(myFont, 20);
+    textFont(myFont, textSize);
     text(label, x, y - 2, rectWidth, rectHeight);
   }
 }
