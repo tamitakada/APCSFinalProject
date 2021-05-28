@@ -14,7 +14,7 @@ public class Button {
   }
   
   public boolean click(float x, float y) {
-    return Math.abs(this.x - x) <= rectWidth / 2 && Math.abs(this.y - y) <= rectHeight;
+    return Math.abs(this.x - x) <= rectWidth / 2 && Math.abs(this.y - y) <= rectHeight / 2;
   }
   
   public void display() {
@@ -24,7 +24,8 @@ public class Button {
     rect(x, y, rectWidth, rectHeight, 10);
     fill(255);
     textAlign(CENTER, CENTER);
-    textSize(20);
-    text(label, x, y, rectWidth, rectHeight);
+    PFont myFont = createFont("Raleway-Regular.ttf", 32);
+    textFont(myFont, 20);
+    text(label, x, y - 2, rectWidth, rectHeight);
   }
 }
