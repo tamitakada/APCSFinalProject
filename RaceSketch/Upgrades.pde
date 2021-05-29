@@ -37,6 +37,7 @@ public class Upgrades implements View {
       //Labels
       Label name = new Label(xCors[0], yCor, carParts[i].getDisplayName());
       name.setSize(24);
+      name.setFont(Font.RALEWAYBOLD);
       name.setAlignment(LEFT, CENTER);
 
       Label level = new Label(xCors[1], yCor, "Level");
