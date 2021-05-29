@@ -6,11 +6,12 @@ public class Upgrades implements View {
   }
   
   public void setUp() {
+    background(0);
+    car.display(100, 100);
   }
   
   public void display() {
-    background(0);
-    car.display(100, 100);
+    
   }
   
   public ArrayList<Button> getButtons() {
