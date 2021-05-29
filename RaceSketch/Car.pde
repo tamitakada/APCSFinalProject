@@ -11,15 +11,16 @@ public class Car {
   private Livery livery;
 
   //Car parts
-  // private Tire tire;
-  // private FrontWing frontWing;
-  // private RearWing rearWing;
-  // private Engine engine;
-  // private Suspension suspension;
-  // private Transmission transmission;
+   private Tire tire;
+   private FrontWing frontWing;
+   private RearWing rearWing;
+   private Engine engine;
+   private Suspension suspension;
+   private Transmission transmission;
 
   public Car() {
     this.power = 0; this.grip = 0; this.aero = 0; this.weight = 0;
+    livery = new Livery("defaultCar.png");
   }
 
   public Car(double power, double grip, double aero, double weight) {
@@ -75,7 +76,6 @@ public class Car {
   }
 
   //Set methods for parts
-  /*
   public void setTire(Tire tire) {
     this.tire = tire;
   }
@@ -99,5 +99,4 @@ public class Car {
   public void setTransmission(Transmission transmission) {
     this.transmission = transmission;
   }
-  */
 }
