@@ -3,13 +3,14 @@ private ArrayList<View> views = new ArrayList<View>();
 
 void setup() {
   size(1200, 700);
-  background(0);
+  PImage bg = loadImage("homeBG.png");
+  background(bg);
   
   String[] buttonTitles = {"Race", "Upgrades", "Liveries"};
   color[] buttonColors = {#3CC1B9, #3CA1C1, #3C7AC1};
   for (int i = 0; i < buttonTitles.length; i++) {
-    Button button = new Button(width/2, 310 + 110 * i, 200, 70, buttonColors[i]);
-    button.setLabel(buttonTitles[i], 255, 20);
+    Button button = new Button(width/2, 310 + 110 * i, 200, 70, 255);
+    button.setLabel(buttonTitles[i], 0, 20);
     buttons.add(button);
   }
 }
