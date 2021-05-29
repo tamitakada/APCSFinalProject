@@ -17,3 +17,5 @@ Development Log
 [5/26] Sadid - I created and wrote the CarParts class as well as all the individual classes for the car parts.   
 
 [5/28] Tami - I added the Button class for use in views.
+
+[5/29] Tami - I added a Label class and created the Home page. I also updated the Upgrades view with labels, images, and a back button, and I linked it to the Home page menu button.
