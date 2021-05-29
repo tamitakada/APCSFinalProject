@@ -8,6 +8,8 @@ public class Home implements View {
     buttons = new ArrayList<Button>();
     views = new ArrayList<View>();
     Upgrades upgradesView = new Upgrades(car);
+    Race raceView = new Race(car);
+    views.add(raceView);
     views.add(upgradesView);
   }
   
@@ -37,9 +39,9 @@ public class Home implements View {
   }
   
   public void clicked(int index) {
-    if (index == 1) {
-      current = views.get(0);
-      newView = true;
+    if (index < views.size()) {
+      current = views.get(index);
+      newView = true; 
     }
   }
   
