@@ -1,13 +1,16 @@
 private Car car = new Car();
 public View current = new Home();
+public boolean newView = true;
 
 void setup() {
   size(1200, 700);
   background(0);
-  current.setUp();
 }
 
 void draw() {
+  if (newView) {
+    current.setUp(); newView = false;
+  }
   current.display();
 }
 
