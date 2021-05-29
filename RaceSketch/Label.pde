@@ -46,8 +46,10 @@ public class Label {
     switch (font) {
       case BUNGEEHAIRLINE:
         currentFont = bungeeHairline;
+        break;
       case BUNGEEINLINE:
         currentFont = bungeeInline;
+        break;
       default:
         break;
     }
