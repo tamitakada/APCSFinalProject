@@ -1,4 +1,5 @@
 enum Font {
   BUNGEEHAIRLINE,
+  BUNGEEINLINE,
   RALEWAY
 }
