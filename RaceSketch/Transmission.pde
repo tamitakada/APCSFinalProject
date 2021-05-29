@@ -8,4 +8,7 @@ public class Transmission extends CarPart {
     return 100 - (10 * (getLevel() - 1));
   }
   
+  public String getDisplayName() {
+    return "Transmission";
+  }
 }

@@ -12,4 +12,7 @@ public class Engine extends CarPart {
     return 400 - (20 * (getLevel() - 1));
   }
   
+  public String getDisplayName() {
+    return "Engine";
+  }
 }

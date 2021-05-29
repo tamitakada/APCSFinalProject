@@ -1,5 +1,4 @@
 public class CarPart {
- 
   private double level;
   
   public CarPart() {
@@ -20,4 +19,7 @@ public class CarPart {
      return level;
   }
   
+  public String getDisplayName() {
+    return "";
+  }
 }

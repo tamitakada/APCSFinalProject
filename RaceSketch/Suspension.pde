@@ -8,4 +8,7 @@ public class Suspension extends CarPart {
     return 100 - (10 * (getLevel() - 1));
   }
   
+  public String getDisplayName() {
+    return "Suspension";
+  }
 }

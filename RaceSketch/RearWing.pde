@@ -8,4 +8,7 @@ public class RearWing extends CarPart {
     return 40 - (5 * (getLevel() - 1));
   }
   
+  public String getDisplayName() {
+    return "Rear Wing";
+  }
 }
