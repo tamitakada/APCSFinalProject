@@ -36,7 +36,10 @@ public class Home implements View {
   }
   
   public void clicked(int index) {
-    if (index == 1) current = views.get(0);
+    if (index == 1) {
+      current = views.get(0);
+      newView = true;
+    }
   }
   
   public ArrayList<Button> getButtons() {
