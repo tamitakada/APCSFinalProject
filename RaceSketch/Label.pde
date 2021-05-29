@@ -16,6 +16,10 @@ public class Label {
     textAlignX = CENTER; textAlignY = CENTER;
   }
   
+  public void setText(String text) {
+    this.text = text;
+  }
+  
   public void setColor(color textColor) {
     this.textColor = textColor;
   }
