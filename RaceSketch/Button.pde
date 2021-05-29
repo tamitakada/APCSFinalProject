@@ -4,6 +4,7 @@ public class Button {
   private float rectWidth;
   private float rectHeight;
   private color rectColor;
+  private int alpha;
   
   private String label;
   private color textColor;
@@ -12,8 +13,12 @@ public class Button {
   public Button(float x, float y, float rectWidth, float rectHeight, color rectColor) {
     this.x = x; this.y = y;
     this.rectWidth = rectWidth; this.rectHeight = rectHeight;
-    this.rectColor = rectColor;
+    this.rectColor = rectColor; alpha = 255;
     label = ""; textColor = 255; textSize = 20;
+  }
+  
+  public void setRectColor(color col, int alpha) {
+    rectColor = col; this.alpha = alpha;
   }
   
   public void setLabel(String text, color textColor, int size) {
@@ -28,9 +33,9 @@ public class Button {
   
   public void display() {
     noStroke();
-    fill(rectColor);
+    fill(rectColor, alpha);
     rectMode(CENTER);
-    rect(x, y, rectWidth, rectHeight, 10);
+    rect(x, y, rectWidth, rectHeight, 100);
     fill(textColor);
     textAlign(CENTER, CENTER);
     PFont myFont = createFont("Raleway-Regular.ttf", 32);
