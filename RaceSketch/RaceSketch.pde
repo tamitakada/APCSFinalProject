@@ -1,4 +1,5 @@
 private ArrayList<Button> buttons = new ArrayList<Button>();
+private ArrayList<View> views = new ArrayList<View>();
 
 void setup() {
   size(1200, 700);
@@ -26,8 +27,10 @@ void draw() {
 
 void mousePressed() {
    if (mouseButton == LEFT) {
-     for (Button b: buttons) {
-       if (b.click(mouseX, mouseY)) print("clicked!");
+     for (int i = 0; i < buttons.size(); i++) {
+       if (buttons.get(i).click(mouseX, mouseY)) {
+         if (i < views.size()) views.get(i).display();
+       }
      }
    }
 }
