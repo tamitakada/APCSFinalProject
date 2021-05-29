@@ -8,9 +8,17 @@ public class Race implements View {
   }
   
   public void setUp() {
+    Button backButton = new Button(100, 50, 70, 40, 0);
+    backButton.setLabel("< Back", 255, 20);
+    buttons.add(backButton);
   }
   
   public void display() {
+    background(0);
+    
+    for (Button b: buttons) {
+      b.display();
+    }
   }
   
   public ArrayList<Button> getButtons() {
@@ -18,6 +26,9 @@ public class Race implements View {
   }
   
   public void clicked(int index) {
-    
+    if (index == 0) {
+      current = new Home();
+      newView = true;
+    }
   }
 }
