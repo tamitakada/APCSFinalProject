@@ -44,7 +44,7 @@ public class Car {
   }
 
   public void move() {
-
+    
   }
 
   public void shift() {
@@ -109,6 +109,7 @@ public class Car {
 
   public void setEngine(Engine engine) {
     this.engine = engine;
+    calculatePower();
   }
 
   public void setSuspension(Suspension suspension) {
@@ -117,5 +118,11 @@ public class Car {
 
   public void setTransmission(Transmission transmission) {
     this.transmission = transmission;
+    calculatePower();
+  }
+  
+  private void calculatePower() {
+    double totalPower = engine.power() + transmission.power();
+    setPower(totalPower);
   }
 }
