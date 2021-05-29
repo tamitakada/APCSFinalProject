@@ -39,6 +39,7 @@ public class Label {
   private PFont bungeeHairline = createFont("BungeeHairline-Reg.ttf", 40);
   private PFont raleway = createFont("Raleway-Regular.ttf", 40);
   private PFont bungeeInline = createFont("BungeeInline-Regular.ttf", 40);
+  private PFont ralewayBold = createFont("Raleway-Bold.ttf", 40);
   
   public void display() {
     noStroke();
@@ -53,6 +54,9 @@ public class Label {
         break;
       case BUNGEEINLINE:
         currentFont = bungeeInline;
+        break;
+      case RALEWAYBOLD:
+        currentFont = ralewayBold;
         break;
       default:
         break;
