@@ -31,7 +31,7 @@ public class Home implements View {
     
     Label label = new Label(width/2, 140, "NEON RACE");
     label.setSize(80);
-    label.setFont(Font.BUNGEEHAIRLINE);
+    label.setFont(Font.BUNGEEINLINE);
     label.display();
   }
   
