@@ -43,8 +43,17 @@ public class Car {
     transmission = new Transmission();
   }
 
-  public void move() {
-    
+  public double move() {
+    double[] properties = {power, grip, aero};
+    for (int i = 0; i < properties.length; i++) {
+      double luck = Math.random() * 100;
+      double current = properties[i];
+      if (luck >= 90) current *= 2;
+      else if (luck >= 50) current *= 1.2;
+      else if (luck <= 10) current *= 0.8;
+      properties[i] = current;
+    }
+    return ((power + grip + aero) / (weight));
   }
 
   public void shift() {
@@ -97,32 +106,60 @@ public class Car {
   //Set methods for parts
   public void setTire(Tire tire) {
     this.tire = tire;
+    calculateWeight();
+    calculateGrip();
   }
 
   public void setFrontWing(FrontWing frontWing) {
     this.frontWing = frontWing;
+    calculateWeight();
+    calculateAero();
   }
 
   public void setRearWing(RearWing rearWing) {
     this.rearWing = rearWing;
+    calculateWeight();
+    calculateAero();
   }
 
   public void setEngine(Engine engine) {
     this.engine = engine;
     calculatePower();
+    calculateWeight();
+    calculateAero();
   }
 
   public void setSuspension(Suspension suspension) {
     this.suspension = suspension;
+    calculateWeight();
+    calculateAero();
   }
 
   public void setTransmission(Transmission transmission) {
     this.transmission = transmission;
     calculatePower();
+    calculateWeight();
   }
   
   private void calculatePower() {
     double totalPower = engine.power() + transmission.power();
     setPower(totalPower);
+  }
+  
+  private void calculateAero() {
+    double total = engine.aero() + frontWing.aero() + rearWing.aero() + suspension.aero();
+    setAero(total);
+  }
+  
+  private void calculateGrip() {
+    setGrip(tire.grip());
+  }
+  
+  private void calculateWeight() {
+    double total = 0;
+    for (CarPart p: getParts()) {
+      total += p.weight();
+    }
+    setWeight(total);
   }
 }
