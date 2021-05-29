@@ -29,8 +29,9 @@ public class Home implements View {
       b.display();
     }
     
-    Label label = new Label(width/2, 140, "NEON RACE");
+    Label label = new Label(width/2, 140, "NEON RACER");
     label.setSize(80);
+    label.setColor(#FF00C7);
     label.setFont(Font.BUNGEEINLINE);
     label.display();
   }
