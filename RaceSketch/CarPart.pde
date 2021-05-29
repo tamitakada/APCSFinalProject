@@ -5,6 +5,10 @@ public class CarPart {
     level = 1;
   }
   
+  public double weight() {
+    return 0.0; 
+  }
+  
   public void incLevel() {
     level++;
   }
