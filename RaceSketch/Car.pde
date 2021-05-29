@@ -43,17 +43,20 @@ public class Car {
     transmission = new Transmission();
   }
 
+  //Meters per second (avg ~105m/s)
   public double move() {
+    calculateWeight(); calculatePower(); calculateGrip(); calculateAero();
     double[] properties = {power, grip, aero};
     for (int i = 0; i < properties.length; i++) {
       double luck = Math.random() * 100;
       double current = properties[i];
-      if (luck >= 90) current *= 2;
+      if (luck >= 97) current *= 2;
+      else if (luck >= 90) current *= 1.5;
       else if (luck >= 50) current *= 1.2;
       else if (luck <= 10) current *= 0.8;
       properties[i] = current;
     }
-    return ((power + grip + aero) / (weight));
+    return (properties[0] + properties[1] + properties[2] - getWeight()) / 60;
   }
 
   public void shift() {
