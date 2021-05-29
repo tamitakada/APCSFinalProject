@@ -11,21 +11,36 @@ public class Car {
   private Livery livery;
 
   //Car parts
-   private Tire tire;
-   private FrontWing frontWing;
-   private RearWing rearWing;
-   private Engine engine;
-   private Suspension suspension;
-   private Transmission transmission;
+  private Tire tire;
+  private FrontWing frontWing;
+  private RearWing rearWing;
+  private Engine engine;
+  private Suspension suspension;
+  private Transmission transmission;
 
   public Car() {
     this.power = 0; this.grip = 0; this.aero = 0; this.weight = 0;
     livery = new Livery("defaultCar.png");
+    
+    tire = new Tire();
+    frontWing = new FrontWing();
+    rearWing = new RearWing();
+    engine = new Engine();
+    suspension = new Suspension();
+    transmission = new Transmission();
   }
 
   public Car(double power, double grip, double aero, double weight) {
     this.power = power; this.grip = grip;
     this.aero = aero; this.weight = weight;
+    livery = new Livery("defaultCar.png");
+    
+    tire = new Tire();
+    frontWing = new FrontWing();
+    rearWing = new RearWing();
+    engine = new Engine();
+    suspension = new Suspension();
+    transmission = new Transmission();
   }
 
   public void move() {
@@ -34,6 +49,10 @@ public class Car {
 
   public void shift() {
 
+  }
+  
+  public CarPart[] getParts() {
+    return new CarPart[]{tire, frontWing, rearWing, engine, suspension, transmission};
   }
 
   public void display(float x, float y) {
