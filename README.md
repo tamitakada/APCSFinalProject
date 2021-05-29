@@ -21,4 +21,4 @@ Development Log
 
 [5/28] Tami - I added the Button class for use in views.
 
-[5/29] Tami - I added a Label class and created the Home page. I also updated the Upgrades view with labels, images, increment/decrement buttons to change the levels of the car parts, and a back button, and I linked it to the Home page menu button. I added the base functions for the Race view and worked on some calculations for moving the Car.
+[5/29] Tami - I added a Label class and created the Home page. I finished writing the most of the Upgrades view and began work on the Race view, and I also worked on some calculations for moving the Car.
