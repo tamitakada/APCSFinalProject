@@ -13,7 +13,7 @@ public class Upgrades implements View {
 
   public void setUp() {
     Button backButton = new Button(100, 50, 70, 40, 0);
-    backButton.setLabel("< Back", 255, 16);
+    backButton.setLabel("< Back", 255, 20);
     buttons.add(backButton);
 
     for (int i = 0; i < 6; i++) {
