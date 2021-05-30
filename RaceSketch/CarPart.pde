@@ -10,7 +10,9 @@ public class CarPart {
   }
   
   public void incLevel() {
-    level++;
+    if (level < 5) {
+      level++;
+    }
   }
   
   public void decLevel() {
