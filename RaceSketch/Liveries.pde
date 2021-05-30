@@ -32,6 +32,11 @@ public class Liveries implements View {
   public void display() {
     background(#1E1E1E);
     
+    Label label = new Label(900, 140, "LIVERIES");
+    label.setSize(65);
+    label.setFont(Font.BUNGEEHAIRLINE);
+    label.display();
+    
     for (Button b: buttons) {
       b.display();
     }
