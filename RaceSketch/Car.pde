@@ -5,7 +5,7 @@ public class Car {
   private double aero;
   private double weight;
 
-  // private Gear gear;
+  private Gear gear;
 
   //Car appearance
   private Livery livery;
