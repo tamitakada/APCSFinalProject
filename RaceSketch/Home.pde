@@ -3,14 +3,13 @@ public class Home implements View {
   private ArrayList<View> views;
   private Car car;
 
-  public Home() {
-    car = new Car();
+  public Home(Car car) {
+    this.car = car;
     buttons = new ArrayList<Button>();
     views = new ArrayList<View>();
-    Upgrades upgradesView = new Upgrades(car);
-    Race raceView = new Race(car);
-    views.add(raceView);
-    views.add(upgradesView);
+    views.add(new Race(car));
+    views.add(new Upgrades(car));
+    views.add(new Liveries(car));
   }
   
   public void setUp() {
