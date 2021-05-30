@@ -12,7 +12,7 @@ public class Upgrades implements View {
   }
 
   public void setUp() {
-    Button backButton = new Button(100, 50, 70, 40, 0);
+    Button backButton = new Button(100, 50, 70, 40, #1E1E1E);
     backButton.setLabel("< Back", 255, 20);
     buttons.add(backButton);
 
@@ -25,10 +25,10 @@ public class Upgrades implements View {
       }
       
       //Buttons
-      Button up = new Button(xCors[2] + 20, yCor, 30, 30, 0);
+      Button up = new Button(xCors[2] + 20, yCor, 30, 30, #1E1E1E);
       up.setLabel("+", 255, 22);
       
-      Button down = new Button(xCors[2] - 20, yCor, 30, 30, 0);
+      Button down = new Button(xCors[2] - 20, yCor, 30, 30, #1E1E1E);
       down.setLabel("-", 255, 22);
       
       buttons.add(up);
@@ -51,7 +51,7 @@ public class Upgrades implements View {
   }
 
   public void display() {
-    background(0);
+    background(#1E1E1E);
     car.display(100, 100);
     
     for (Button b: buttons) {

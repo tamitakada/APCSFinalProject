@@ -10,9 +10,9 @@ public class Race implements View {
   }
   
   public void setUp() {
-    Button backButton = new Button(100, 50, 70, 40, 0);
+    Button backButton = new Button(100, 50, 70, 40, #1E1E1E);
     backButton.setLabel("< Back", 255, 20);
-    Button startButton = new Button(1100, 50, 70, 40, 0);
+    Button startButton = new Button(1100, 50, 70, 40, #1E1E1E);
     startButton.setLabel("Start", 255,20);
     buttons.add(backButton);
     buttons.add(startButton);
