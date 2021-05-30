@@ -37,7 +37,9 @@ public class Race implements View {
       newView = true;
     }
     if (index == 1) {
-      light = {1,2,3,4,5};
+      for (int i = 0; i < light.length; i++) {
+        light[i] = 1+1;
+      }
     }
   }
 }
