@@ -1,13 +1,17 @@
 public class Liveries implements View {
   private Car car;
   private ArrayList<Button> buttons;
-  
-  private ArrayList<Livery> availableLiveries;
+  private String[] liveryList = {
+    "red_purple_car.png",
+    "cyan_yellow_car.png",
+    "green_car.png",
+    "white_blue_car.png",
+    "purple_car.png"
+  };
 
   public Liveries(Car car) {
     this.car = car;
     buttons = new ArrayList<Button>();
-    availableLiveries = new ArrayList<Livery>();
   }
 
   public void setUp() {
@@ -15,22 +19,24 @@ public class Liveries implements View {
     backButton.setLabel("< Back", 255, 20);
     buttons.add(backButton);
     
-    String[] liveryList = {
-      "red_purple_car.png",
-      "cyan_yellow_car.png",
-      "green_car.png",
-      "white_blue_car.png",
-      "purple_car.png"
-    };
-    
-    for (String s: liveryList) {
-      Livery livery = new Livery(s);
-      availableLiveries.add(livery);
+    for (int i = 0; i < liveryList.length; i++) {
+      ImageButton livery = new ImageButton(
+        150 + i * 220, // x
+        450, // y
+        112, // width
+        300, // height
+        liveryList[i]
+      );
+      buttons.add(livery);
     }
   }
 
   public void display() {
     background(#1E1E1E);
+    
+    rotate(-PI/2);
+    car.display(-150, 380, 112, 300);
+    rotate(PI/2);
     
     Label label = new Label(900, 140, "LIVERIES");
     label.setSize(65);
@@ -39,12 +45,6 @@ public class Liveries implements View {
     
     for (Button b: buttons) {
       b.display();
-    }
-    
-    for (int i = 0; i < availableLiveries.size(); i++) {
-      PImage livery = availableLiveries.get(i).getImage();
-      livery.resize(112, 300);
-      image(livery, 100 + i * 220, 300);
     }
   }
 
@@ -56,6 +56,9 @@ public class Liveries implements View {
     if (index == 0) {
       current = new Home(car);
       newView = true;
+    } else {
+      Livery livery = new Livery(liveryList[index - 1]);
+      car.setLivery(livery);
     }
   }
 }
