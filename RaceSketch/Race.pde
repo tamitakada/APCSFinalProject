@@ -47,10 +47,9 @@ public class Race implements View {
   
   public void clicked(int index) {
     if (index == 0) {
-      current = new Home();
+      current = new Home(car);
       newView = true;
-    }
-    if (index == 1) {
+    } else if (index == 1) {
       light = 0;
     }
   }

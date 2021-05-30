@@ -77,7 +77,7 @@ public class Upgrades implements View {
 
   public void clicked(int index) {
     if (index == 0) {
-      current = new Home();
+      current = new Home(car);
       newView = true;
     } else {
       boolean up = (index % 2 != 0);
