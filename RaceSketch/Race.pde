@@ -1,12 +1,12 @@
 public class Race implements View {
   private Car car;
   private ArrayList<Button> buttons;
-  private int[] light;
+  private boolean light;
   
   public Race(Car car) {
     this.car = car;
     buttons = new ArrayList<Button>();
-    light = new int[5];
+    light = false;
   }
   
   public void setUp() {
@@ -25,6 +25,8 @@ public class Race implements View {
     for (Button b: buttons) {
       b.display();
     }
+ 
+
   }
   
   public ArrayList<Button> getButtons() {
@@ -37,9 +39,7 @@ public class Race implements View {
       newView = true;
     }
     if (index == 1) {
-      for (int i = 0; i < light.length; i++) {
-        light[i] = 1+1;
-      }
+      light = true;
     }
   }
 }
