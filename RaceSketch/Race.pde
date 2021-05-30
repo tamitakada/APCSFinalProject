@@ -1,10 +1,12 @@
 public class Race implements View {
   private Car car;
   private ArrayList<Button> buttons;
+  private int light;
   
   public Race(Car car) {
     this.car = car;
     buttons = new ArrayList<Button>();
+    light = 0;
   }
   
   public void setUp() {
@@ -23,6 +25,7 @@ public class Race implements View {
     for (Button b: buttons) {
       b.display();
     }
+    
   }
   
   public ArrayList<Button> getButtons() {
@@ -33,6 +36,9 @@ public class Race implements View {
     if (index == 0) {
       current = new Home();
       newView = true;
+    }
+    if (index == 1) {
+      light = 1;
     }
   }
 }
