@@ -14,7 +14,8 @@ public class Race implements View {
   }
   
   public void display() {
-    background(0);
+    PImage bg = loadImage("raceBG.png");
+    background(bg);
     
     for (Button b: buttons) {
       b.display();
