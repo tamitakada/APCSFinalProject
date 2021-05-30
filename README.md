@@ -24,4 +24,4 @@ Development Log
 [5/29] Tami - I added a Label class and created the Home page. I finished writing the most of the Upgrades view and began work on the Race view, and I also worked on some calculations for moving the Car.   
 [5/29] Sadid - I added the background for the Race class and worked on the lights for the race. I made a Start button to make the lights count down. 
 
-[5/30] Tami - I created the Livery view and made new car liveries.
+[5/30] Tami - I created the Liveries view and made new car liveries.
