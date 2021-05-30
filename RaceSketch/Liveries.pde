@@ -1,17 +1,28 @@
 public class Liveries implements View {
   private Car car;
   private ArrayList<Button> buttons;
-  private String[] liveryList = {
-    "red_purple_car.png",
-    "cyan_yellow_car.png",
-    "green_car.png",
-    "white_blue_car.png",
-    "purple_car.png"
+  private String[][] liveryList = {
+    {
+      "red_purple_car.png",
+      "cyan_yellow_car.png",
+      "green_car.png",
+      "white_blue_car.png",
+      "purple_car.png"
+    },
+    {
+      "pink_blue_car.png",
+      "yellow_blue_car.png",
+      "blue_car.png",
+      "orange_car.png",
+      "salmon_car.png"
+    }
   };
+  private int currentPage;
 
   public Liveries(Car car) {
     this.car = car;
     buttons = new ArrayList<Button>();
+    currentPage = 0;
   }
 
   public void setUp() {
@@ -19,13 +30,15 @@ public class Liveries implements View {
     backButton.setLabel("< Back", 255, 20);
     buttons.add(backButton);
     
-    for (int i = 0; i < liveryList.length; i++) {
+    buttons.add(new ImageButton(1100, 450, 20, 40, "rightArrow.png"));
+    
+    for (int i = 0; i < liveryList[0].length; i++) {
       ImageButton livery = new ImageButton(
         150 + i * 220, // x
         450, // y
         112, // width
         300, // height
-        liveryList[i]
+        liveryList[0][i]
       );
       buttons.add(livery);
     }
@@ -56,9 +69,24 @@ public class Liveries implements View {
     if (index == 0) {
       current = new Home(car);
       newView = true;
+    } else if (index == 1) {
+      currentPage++;
+      for (int i = 4; i >= 0; i--) {
+        buttons.remove(i + 2);
+      }
+      for (int i = 0; i < liveryList[currentPage].length; i++) {
+        ImageButton livery = new ImageButton(
+          150 + i * 220, // x
+          450, // y
+          112, // width
+          300, // height
+          liveryList[currentPage][i]
+        );
+        buttons.add(livery);
+      }
     } else {
-      Livery livery = new Livery(liveryList[index - 1]);
-      car.setLivery(livery);
+      Livery livery = new Livery(liveryList[currentPage][index - 2]);
+      car.setLivery(livery); 
     }
   }
 }
