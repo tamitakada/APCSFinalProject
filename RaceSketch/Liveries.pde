@@ -30,7 +30,9 @@ public class Liveries implements View {
     backButton.setLabel("< Back", 255, 20);
     buttons.add(backButton);
     
-    buttons.add(new ImageButton(1100, 450, 20, 40, "rightArrow.png"));
+    buttons.add(new ImageButton(1130, 450, 20, 40, "rightArrow.png"));
+    buttons.add(new ImageButton(50, 450, 20, 40, "leftArrow.png"));
+    buttons.get(2).isHidden = true;
     
     for (int i = 0; i < liveryList[0].length; i++) {
       ImageButton livery = new ImageButton(
@@ -69,10 +71,12 @@ public class Liveries implements View {
     if (index == 0) {
       current = new Home(car);
       newView = true;
-    } else if (index == 1) {
-      currentPage++;
+    } else if (index < 3) {
+      if (index == 1) currentPage++;
+      else currentPage--;
+ 
       for (int i = 4; i >= 0; i--) {
-        buttons.remove(i + 2);
+        buttons.remove(i + 3);
       }
       for (int i = 0; i < liveryList[currentPage].length; i++) {
         ImageButton livery = new ImageButton(
@@ -84,8 +88,10 @@ public class Liveries implements View {
         );
         buttons.add(livery);
       }
+      buttons.get(1).isHidden = (currentPage == liveryList.length - 1);
+      buttons.get(2).isHidden = (currentPage == 0);
     } else {
-      Livery livery = new Livery(liveryList[currentPage][index - 2]);
+      Livery livery = new Livery(liveryList[currentPage][index - 3]);
       car.setLivery(livery); 
     }
   }
