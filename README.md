@@ -21,4 +21,5 @@ Development Log
 
 [5/28] Tami - I added the Button class for use in views.
 
-[5/29] Tami - I added a Label class and created the Home page. I finished writing the most of the Upgrades view and began work on the Race view, and I also worked on some calculations for moving the Car.
+[5/29] Tami - I added a Label class and created the Home page. I finished writing the most of the Upgrades view and began work on the Race view, and I also worked on some calculations for moving the Car.   
+[5/29] Sadid - I added the background for the Race class and worked on the lights for the race. I made a Start button to make the lights count down. 
