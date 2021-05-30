@@ -1,5 +1,4 @@
-private Car car = new Car();
-public View current = new Home();
+public View current = new Home(new Car());
 public boolean newView = true;
 
 void setup() {
