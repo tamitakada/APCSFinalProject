@@ -10,6 +10,8 @@ public class Button {
   private color textColor;
   private int textSize;
   
+  boolean isHidden = false;
+  
   public Button(float x, float y, float rectWidth, float rectHeight, color rectColor) {
     this.x = x; this.y = y;
     this.rectWidth = rectWidth; this.rectHeight = rectHeight;
@@ -28,22 +30,25 @@ public class Button {
   }
   
   public boolean click(float x, float y) {
+    if (isHidden) return false;
     return Math.abs(this.x - x) <= rectWidth / 2 && Math.abs(this.y - y) <= rectHeight / 2;
   }
   
   public float[] getCenter() {
     return new float[]{x, y}; 
   }
-  
+
   public void display() {
-    noStroke();
-    fill(rectColor, alpha);
-    rectMode(CENTER);
-    rect(x, y, rectWidth, rectHeight, 100);
-    fill(textColor);
-    textAlign(CENTER, CENTER);
-    PFont myFont = createFont("Raleway-Regular.ttf", 32);
-    textFont(myFont, textSize);
-    text(label, x, y - 2, rectWidth, rectHeight);
+    if (!isHidden) {
+      noStroke();
+      fill(rectColor, alpha);
+      rectMode(CENTER);
+      rect(x, y, rectWidth, rectHeight, 100);
+      fill(textColor);
+      textAlign(CENTER, CENTER);
+      PFont myFont = createFont("Raleway-Regular.ttf", 32);
+      textFont(myFont, textSize);
+      text(label, x, y - 2, rectWidth, rectHeight);
+    }
   }
 }
