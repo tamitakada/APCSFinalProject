@@ -52,7 +52,7 @@ public class Upgrades implements View {
 
   public void display() {
     background(#1E1E1E);
-    car.display(100, 100);
+    car.display(200, 380, 187, 500);
     
     for (Button b: buttons) {
       b.display();
