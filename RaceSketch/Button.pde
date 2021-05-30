@@ -31,6 +31,10 @@ public class Button {
     return Math.abs(this.x - x) <= rectWidth / 2 && Math.abs(this.y - y) <= rectHeight / 2;
   }
   
+  public float[] getCenter() {
+    return new float[]{x, y}; 
+  }
+  
   public void display() {
     noStroke();
     fill(rectColor, alpha);
