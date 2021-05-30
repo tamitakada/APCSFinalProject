@@ -67,8 +67,10 @@ public class Car {
     return new CarPart[]{tire, frontWing, rearWing, engine, suspension, transmission};
   }
 
-  public void display(float x, float y) {
+  public void display(float x, float y, int w, int h) {
+    imageMode(CENTER);
     PImage car = livery.getImage();
+    car.resize(w, h);
     image(car, x, y);
   }
 
@@ -142,6 +144,10 @@ public class Car {
     this.transmission = transmission;
     calculatePower();
     calculateWeight();
+  }
+  
+  public void setLivery(Livery livery) {
+    this.livery = livery;
   }
   
   private void calculatePower() {
