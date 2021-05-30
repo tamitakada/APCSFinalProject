@@ -58,7 +58,7 @@ public class Upgrades implements View {
       b.display();
     }
 
-    Label label = new Label(width/2 + 100, 120, "UPGRADES");
+    Label label = new Label(width/2 + 140, 120, "UPGRADES");
     label.setSize(65);
     label.setFont(Font.BUNGEEHAIRLINE);
     label.display();
