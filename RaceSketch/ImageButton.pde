@@ -4,7 +4,7 @@ public class ImageButton extends Button {
   private float h;
 
   public ImageButton(float x, float y, float w, float h, String imageName) {
-    super(x, y, w, h, 0);
+    super(x, y, w, h, #1E1E1E);
     this.w = w; this.h = h;
     this.imageName = imageName;
   }
@@ -12,7 +12,7 @@ public class ImageButton extends Button {
   public void display() {
     super.display();
     
-    rectMode(CENTER);
+    imageMode(CENTER);
     
     PImage img = loadImage(imageName);
     img.resize((int)w, (int)h);
