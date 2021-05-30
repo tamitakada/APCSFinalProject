@@ -1,12 +1,12 @@
 public class Race implements View {
   private Car car;
   private ArrayList<Button> buttons;
-  private boolean light;
+  private int light;
   
   public Race(Car car) {
     this.car = car;
     buttons = new ArrayList<Button>();
-    light = false;
+    light = -1;
   }
   
   public void setUp() {
@@ -25,8 +25,20 @@ public class Race implements View {
     for (Button b: buttons) {
       b.display();
     }
- 
-
+    if (light >= 0) {
+      if (light < 5) {
+          fill(#FBFF00);
+          ellipse(157.78-light*29.14,311.3,22.6,22.6);
+          ellipse(157.78-light*29.14,387.01,22.6,22.6);
+          delay(1000);
+          light++;
+      }
+    }
+    if (light == 5) {
+      fill(#04FF00);
+      ellipse(157.78-4*29.14,311.3,22.6,22.6);
+      ellipse(157.78-4*29.14,387.01,22.6,22.6);
+    }
   }
   
   public ArrayList<Button> getButtons() {
@@ -39,7 +51,7 @@ public class Race implements View {
       newView = true;
     }
     if (index == 1) {
-      light = true;
+      light = 0;
     }
   }
 }
