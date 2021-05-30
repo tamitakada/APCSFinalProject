@@ -11,14 +11,15 @@ public class ImageButton extends Button {
 
   public void display() {
     super.display();
+    if (!isHidden) {
+      imageMode(CENTER);
     
-    imageMode(CENTER);
-    
-    PImage img = loadImage(imageName);
-    img.resize((int)w, (int)h);
-    
-    float[] center = super.getCenter();
-    image(img, center[0], center[1]);
+      PImage img = loadImage(imageName);
+      img.resize((int)w, (int)h);
+      
+      float[] center = super.getCenter();
+      image(img, center[0], center[1]); 
+    }
   }
 
   public String getImageName() {
