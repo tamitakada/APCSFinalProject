@@ -3,12 +3,16 @@ public class Race implements View {
   private Car comp;
   private ArrayList<Button> buttons;
   private int light;
+  private float moveCar;
+  private float moveInt;
   
   public Race(Car car) {
     this.car = car;
     comp = car;
     buttons = new ArrayList<Button>();
     light = -1;
+    float moveCar = (float) car.move()/10;
+    float moveComp = (float) comp.move()/10;
   }
   
   public void setUp() {
@@ -27,6 +31,7 @@ public class Race implements View {
     for (Button b: buttons) {
       b.display();
     }
+    
     if (light >= 0) {
       if (light < 5) {
           fill(#FBFF00);
@@ -44,8 +49,11 @@ public class Race implements View {
     
     translate(width/2,height/2);
     rotate(radians(90));
-    car.display(115,550,37,100);
-    comp.display(-115,550,37,100);
+    
+      car.display(115,550,37,100);
+      comp.display(-115,550,37,100);
+    
+    
   }
   
   public ArrayList<Button> getButtons() {
