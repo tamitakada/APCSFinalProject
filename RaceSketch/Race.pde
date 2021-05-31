@@ -39,6 +39,9 @@ public class Race implements View {
       ellipse(157.78-4*29.14,311.3,22.6,22.6);
       ellipse(157.78-4*29.14,387.01,22.6,22.6);
     }
+    
+    car.display(100,100,37,100);
+    
   }
   
   public ArrayList<Button> getButtons() {
