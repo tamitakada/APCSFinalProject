@@ -45,6 +45,7 @@ public class Race implements View {
     translate(width/2,height/2);
     rotate(radians(90));
     car.display(115,550,37,100);
+    comp.display(-115,550,37,100);
   }
   
   public ArrayList<Button> getButtons() {
