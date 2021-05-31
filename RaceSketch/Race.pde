@@ -4,15 +4,15 @@ public class Race implements View {
   private ArrayList<Button> buttons;
   private int light;
   private float moveCar;
-  private float moveInt;
+  private float moveComp;
   
   public Race(Car car) {
     this.car = car;
     comp = car;
     buttons = new ArrayList<Button>();
     light = -1;
-    float moveCar = (float) car.move()/10;
-    float moveComp = (float) comp.move()/10;
+    moveCar = (float) car.move()/10;
+    moveComp = (float) comp.move()/10;
   }
   
   public void setUp() {
@@ -49,10 +49,16 @@ public class Race implements View {
     
     translate(width/2,height/2);
     rotate(radians(90));
-    
+    if (light == 5) {
+      car.display(115,550-moveCar,37,100);
+      comp.display(-115,550-moveComp,37,100);
+      moveCar += (float) car.move()/10;
+      moveComp += (float) comp.move()/10;
+    } 
+    else {
       car.display(115,550,37,100);
       comp.display(-115,550,37,100);
-    
+    }
     
   }
   
