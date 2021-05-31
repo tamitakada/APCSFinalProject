@@ -5,17 +5,22 @@ public class Race implements View {
   private int light;
   private float moveCar;
   private float moveComp;
+  private float carTime;
+  private float compTime;
   
   public Race(Car car) {
     this.car = car;
     comp = car;
     buttons = new ArrayList<Button>();
     light = -1;
-    moveCar = (float) car.move()/10;
-    moveComp = (float) comp.move()/10;
+    moveCar = (float) (550 -  car.move()/15);
+    moveComp = (float) (550 - comp.move()/15);
+    carTime = 0;
+    compTime = 0;
   }
   
   public void setUp() {
+    frameRate(15);
     Button backButton = new Button(100, 50, 70, 40, #1E1E1E);
     backButton.setLabel("< Back", 255, 20);
     Button startButton = new Button(1100, 50, 70, 40, #1E1E1E);
@@ -27,6 +32,8 @@ public class Race implements View {
   public void display() {
     PImage bg = loadImage("raceBG.png");
     background(bg);
+    
+    
     
     for (Button b: buttons) {
       b.display();
@@ -49,17 +56,34 @@ public class Race implements View {
     
     translate(width/2,height/2);
     rotate(radians(90));
+    
     if (light == 5) {
-      car.display(115,550-moveCar,37,100);
-      comp.display(-115,550-moveComp,37,100);
-      moveCar += (float) car.move()/10;
-      moveComp += (float) comp.move()/10;
+      car.display(115,moveCar,37,100);
+      comp.display(-115,moveComp,37,100);
+      moveCar -= (float) car.move()/15;
+      moveComp -= (float) comp.move()/15;
+      if (moveComp > -550) {
+        compTime++;
+      }
+      if (moveCar > -550) {
+        carTime++;
+      }
+      
     } 
     else {
       car.display(115,550,37,100);
       comp.display(-115,550,37,100);
     }
     
+    rotate(radians(-90));
+    Label displayCarTime = new Label(475, 175, String.valueOf(carTime/15));
+    displayCarTime.setSize(30);
+    displayCarTime.setFont(Font.BUNGEEHAIRLINE);
+    displayCarTime.display();
+    Label displayCompTime = new Label(475, -175, String.valueOf(compTime/15));
+    displayCompTime.setSize(30);
+    displayCompTime.setFont(Font.BUNGEEHAIRLINE);
+    displayCompTime.display();
   }
   
   public ArrayList<Button> getButtons() {
