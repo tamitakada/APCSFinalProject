@@ -21,6 +21,10 @@ public class CarPart {
     }
   }
   
+  public void setLevel(double level) {
+    this.level = level;
+  }
+  
   public double getLevel() {
      return level;
   }
