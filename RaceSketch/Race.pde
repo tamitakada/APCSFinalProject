@@ -29,8 +29,8 @@ public class Race implements View, WeatherDelegate {
     buttons = new ArrayList<Button>();
     weather = new Weather();
     light = -1;
-    moveCar = (float)(550 -  car.move()/15);
-    moveComp = (float)(550 - comp.move()/15);
+    moveCar = (float)(550 -  car.move()/50);
+    moveComp = (float)(550 - comp.move()/50);
     carTime = 0;
     compTime = 0;
     startTime = 0;
@@ -82,25 +82,24 @@ public class Race implements View, WeatherDelegate {
         startTime = millis();
       }
       
-      car.display(115,moveCar,37,100,false);
-      comp.display(-115,moveComp,37,100,false);
-      
-      moveCar -= (float) car.move()/15;
-      moveComp -= (float) comp.move()/15;
-
       //calculate time for the cars
-      if (moveComp > -550) {
+      if (moveCar > -550) {
+        moveCar -= (float) car.move()/50;
         carTime = millis() - startTime;
       }
-      if (moveCar > -550) {
+      if (moveComp > -550) {
+        moveComp -= (float) comp.move()/50;
         compTime = millis() - startTime;
       }
+      
+      car.display(115,moveCar,37,100,false);
+      comp.display(-115,moveComp,37,100,false);
 
     }
 
     else {
-      car.display(115,550,37,100,reload);
-      comp.display(-115,550,37,100,false);
+      car.display(115,moveCar,37,100,reload);
+      comp.display(-115,moveComp,37,100,false);
       reload = false;
     }
 
