@@ -13,7 +13,12 @@ public class Race implements View {
 
   public Race(Car car) {
     this.car = car;
-    comp = car;
+    comp = car.clone();
+    
+    double compLivery = Math.random();
+    if (compLivery >= 0.5) comp.setLivery(new Livery("enemy_red.png"));
+    else comp.setLivery(new Livery("enemy_black.png"));
+    
     buttons = new ArrayList<Button>();
     //currentWeather = new Weather();
     light = -1;
