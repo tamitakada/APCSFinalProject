@@ -37,6 +37,8 @@ public class Button {
   public float[] getCenter() {
     return new float[]{x, y}; 
   }
+  
+  private PFont raleway = createFont("Raleway-Regular.ttf", 32);
 
   public void display() {
     if (!isHidden) {
@@ -46,8 +48,7 @@ public class Button {
       rect(x, y, rectWidth, rectHeight, 100);
       fill(textColor);
       textAlign(CENTER, CENTER);
-      PFont myFont = createFont("Raleway-Regular.ttf", 32);
-      textFont(myFont, textSize);
+      textFont(raleway, textSize);
       text(label, x, y - 2, rectWidth, rectHeight);
     }
   }
