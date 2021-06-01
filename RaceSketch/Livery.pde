@@ -1,4 +1,5 @@
 public class Livery {
+  private PImage img;
   private String imageName;
   
   public Livery(String imageName) {
@@ -6,6 +7,9 @@ public class Livery {
   }
 
   public PImage getImage() {
-      return loadImage(imageName);
+      if (img == null) {
+        img = loadImage(imageName);
+      }
+      return img;
   }
 }

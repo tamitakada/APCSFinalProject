@@ -2,6 +2,8 @@ public class Home implements View {
   private ArrayList<Button> buttons;
   private ArrayList<View> views;
   private Car car;
+  
+  private PImage bg;
 
   public Home(Car car) {
     this.car = car;
@@ -20,10 +22,10 @@ public class Home implements View {
       button.setRectColor(255, 191);
       buttons.add(button);
     }
+    bg = loadImage("homeBG.png");
   }
   
   public void display() {
-    PImage bg = loadImage("homeBG.png");
     background(bg);
     
     for (Button b: buttons) {
