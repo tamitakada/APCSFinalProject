@@ -3,18 +3,20 @@ public class Race implements View {
   private Car comp;
   private ArrayList<Button> buttons;
   private int light;
-  private float moveCar;
-  private float moveComp;
-  private float carTime;
-  private float compTime;
+  private double moveCar;
+  private double moveComp;
+  private double carTime;
+  private double compTime;
+  private Weather currentWeather;
   
   public Race(Car car) {
     this.car = car;
     comp = car;
     buttons = new ArrayList<Button>();
+    currentWeather = new Weather();
     light = -1;
-    moveCar = (float) (550 -  car.move()/15);
-    moveComp = (float) (550 - comp.move()/15);
+    moveCar = (550 -  car.move()/15);
+    moveComp = (550 - comp.move()/15);
     carTime = 0;
     compTime = 0;
   }
@@ -32,9 +34,7 @@ public class Race implements View {
   public void display() {
     PImage bg = loadImage("raceBG.png");
     background(bg);
-    
-    
-    
+
     for (Button b: buttons) {
       b.display();
     }
@@ -58,10 +58,10 @@ public class Race implements View {
     rotate(radians(90));
     
     if (light == 5) {
-      car.display(115,moveCar,37,100);
-      comp.display(-115,moveComp,37,100);
-      moveCar -= (float) car.move()/15;
-      moveComp -= (float) comp.move()/15;
+      car.display(115,(float)moveCar,37,100);
+      comp.display(-115,(float)moveComp,37,100);
+      moveCar -= car.move()/15;
+      moveComp -= comp.move()/15;
       if (moveComp > -550) {
         compTime++;
       }
@@ -76,11 +76,20 @@ public class Race implements View {
     }
     
     rotate(radians(-90));
-    Label displayCarTime = new Label(475, 175, String.valueOf(carTime/15));
+    
+    println(carTime);
+    double roundedCarTime = Math.round(carTime * 100.0) / 100.0;
+    println(roundedCarTime);
+    println();
+    
+    Label displayCarTime = new Label(475, 175, String.valueOf(roundedCarTime));
     displayCarTime.setSize(30);
     displayCarTime.setFont(Font.BUNGEEHAIRLINE);
     displayCarTime.display();
-    Label displayCompTime = new Label(475, -175, String.valueOf(compTime/15));
+    
+    double roundedCompTime = Math.round(compTime * 100.0) / 100.0;
+    
+    Label displayCompTime = new Label(475, -175, String.valueOf(roundedCompTime));
     displayCompTime.setSize(30);
     displayCompTime.setFont(Font.BUNGEEHAIRLINE);
     displayCompTime.display();
