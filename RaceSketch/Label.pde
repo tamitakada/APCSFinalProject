@@ -36,27 +36,22 @@ public class Label {
     this.font = font; 
   }
   
-  private PFont bungeeHairline = createFont("BungeeHairline-Reg.ttf", 40);
-  private PFont raleway = createFont("Raleway-Regular.ttf", 40);
-  private PFont bungeeInline = createFont("BungeeInline-Regular.ttf", 40);
-  private PFont ralewayBold = createFont("Raleway-Bold.ttf", 40);
-  
   public void display() {
     noStroke();
     rectMode(CENTER);
     fill(textColor);
     textAlign(textAlignX, textAlignY);
     
-    PFont currentFont = raleway;
+    PFont currentFont = fonts.raleway;
     switch (font) {
       case BUNGEEHAIRLINE:
-        currentFont = bungeeHairline;
+        currentFont = fonts.bungeeHairline;
         break;
       case BUNGEEINLINE:
-        currentFont = bungeeInline;
+        currentFont = fonts.bungeeInline;
         break;
       case RALEWAYBOLD:
-        currentFont = ralewayBold;
+        currentFont = fonts.ralewayBold;
         break;
       default:
         break;
