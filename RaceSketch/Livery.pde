@@ -6,8 +6,8 @@ public class Livery {
     this.imageName = imageName;
   }
 
-  public PImage getImage() {
-      if (img == null) {
+  public PImage getImage(boolean reloadImg) {
+      if (img == null || reloadImg) {
         img = loadImage(imageName);
       }
       return img;

@@ -3,6 +3,8 @@ public class Upgrades implements View {
   private ArrayList<Button> buttons;
   private CarPart[] carParts;
   private ArrayList<Label[]> labels;
+  
+  private boolean reload = true;
 
   public Upgrades(Car car) {
     this.car = car;
@@ -52,7 +54,8 @@ public class Upgrades implements View {
 
   public void display() {
     background(#1E1E1E);
-    car.display(200, 380, 187, 500);
+    car.display(200, 380, 187, 500, reload);
+    reload = false;
     
     for (Button b: buttons) {
       b.display();

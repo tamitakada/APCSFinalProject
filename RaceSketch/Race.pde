@@ -10,6 +10,8 @@ public class Race implements View {
   private int startTime;
 
   private PImage bg;
+  
+  private boolean reload = true;
 
   public Race(Car car) {
     this.car = car;
@@ -71,8 +73,10 @@ public class Race implements View {
       if (startTime == 0) {
         startTime = millis();
       }
-      car.display(115,moveCar,37,100);
-      comp.display(-115,moveComp,37,100);
+      
+      car.display(115,moveCar,37,100,false);
+      comp.display(-115,moveComp,37,100,false);
+      
       moveCar -= (float) car.move()/15;
       moveComp -= (float) comp.move()/15;
 
@@ -87,8 +91,9 @@ public class Race implements View {
     }
 
     else {
-      car.display(115,550,37,100);
-      comp.display(-115,550,37,100);
+      car.display(115,550,37,100,reload);
+      comp.display(-115,550,37,100,false);
+      reload = false;
     }
 
     //display the times for the cars
