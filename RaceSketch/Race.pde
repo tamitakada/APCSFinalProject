@@ -1,4 +1,4 @@
-public class Race implements View {
+public class Race implements View, WeatherDelegate {
   private Car car;
   private Car comp;
   private ArrayList<Button> buttons;
@@ -12,17 +12,22 @@ public class Race implements View {
   private PImage bg;
   
   private boolean reload = true;
+  
+  private Weather weather;
 
   public Race(Car car) {
     this.car = car;
+    car.delegate = this;
+    
     comp = car.clone();
+    comp.delegate = this;
     
     double compLivery = Math.random();
     if (compLivery >= 0.5) comp.setLivery(new Livery("enemy_red.png"));
     else comp.setLivery(new Livery("enemy_black.png"));
     
     buttons = new ArrayList<Button>();
-    //currentWeather = new Weather();
+    weather = new Weather();
     light = -1;
     moveCar = (float)(550 -  car.move()/15);
     moveComp = (float)(550 - comp.move()/15);
@@ -119,5 +124,9 @@ public class Race implements View {
     } else if (index == 1) {
       light = 0;
     }
+  }
+  
+  public Weather getWeather() {
+    return weather;
   }
 }
