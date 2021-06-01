@@ -7,6 +7,7 @@ public class Race implements View {
   private float moveComp;
   private float carTime;
   private float compTime;
+  private int startTime;
   
   public Race(Car car) {
     this.car = car;
@@ -17,10 +18,10 @@ public class Race implements View {
     moveComp = (float) (550 - comp.move()/15);
     carTime = 0;
     compTime = 0;
+    startTime = 0;
   }
   
   public void setUp() {
-    frameRate(15);
     Button backButton = new Button(100, 50, 70, 40, #1E1E1E);
     backButton.setLabel("< Back", 255, 20);
     Button startButton = new Button(1100, 50, 70, 40, #1E1E1E);
@@ -33,19 +34,19 @@ public class Race implements View {
     PImage bg = loadImage("raceBG.png");
     background(bg);
     
-    
-    
+    //display the buttons
     for (Button b: buttons) {
       b.display();
     }
     
+    //display the lights for the dountdown
     if (light >= 0) {
       if (light < 5) {
-          fill(#FBFF00);
-          ellipse(157.78-light*29.14,311.3,22.6,22.6);
-          ellipse(157.78-light*29.14,387.01,22.6,22.6);
-          delay(1000);
-          light++;
+        fill(#FBFF00);
+        ellipse(157.78-light*29.14,311.3,22.6,22.6);
+        ellipse(157.78-light*29.14,387.01,22.6,22.6);
+        delay(1000);
+        light++;
       }
     }
     if (light == 5) {
@@ -54,6 +55,7 @@ public class Race implements View {
       ellipse(157.78-4*29.14,387.01,22.6,22.6);
     }
     
+    //display and move the cars
     translate(width/2,height/2);
     rotate(radians(90));
     
@@ -75,6 +77,7 @@ public class Race implements View {
       comp.display(-115,550,37,100);
     }
     
+    //display the times for the cars
     rotate(radians(-90));
     Label displayCarTime = new Label(475, 175, String.valueOf(carTime/15));
     displayCarTime.setSize(30);
