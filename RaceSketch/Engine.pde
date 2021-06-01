@@ -1,4 +1,12 @@
 public class Engine extends CarPart {
+  public Engine() {
+    super();
+  }
+  
+  public Engine(double level) {
+    super();
+    setLevel(level);
+  }
   
   public double power() {
     return 800 + (50 * (getLevel() - 1));
