@@ -69,9 +69,9 @@ public class Car implements Cloneable {
     return new CarPart[]{tire, frontWing, rearWing, engine, suspension, transmission};
   }
 
-  public void display(float x, float y, int w, int h) {
+  public void display(float x, float y, int w, int h, boolean reload) {
     imageMode(CENTER);
-    PImage car = livery.getImage();
+    PImage car = livery.getImage(reload);
     car.resize(w, h);
     image(car, x, y);
   }
