@@ -11,6 +11,7 @@ class Weather {
      setRandomTemp();
   }
   
+  //Set randoms
   public void setRandomWeather() {
      double random = Math.random();
      if (random < 0.5) weather = WeatherType.SUNNY;
@@ -30,5 +31,22 @@ class Weather {
   public void setRandomTemp() {
      double random = Math.random() * 100;
      temperature = random;
+  }
+  
+  //Gets
+  public WeatherType getWeatherType() {
+    return weather; 
+  }
+  
+  public double getWindDir() {
+    return windDirection;
+  }
+  
+  public double getWindSpd() {
+    return windSpeed; 
+  }
+  
+  public double getTemp() {
+    return temperature; 
   }
 }
