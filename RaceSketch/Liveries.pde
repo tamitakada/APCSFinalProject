@@ -18,6 +18,7 @@ public class Liveries implements View {
     }
   };
   private int currentPage;
+  private boolean reload = true;
 
   public Liveries(Car car) {
     this.car = car;
@@ -50,7 +51,8 @@ public class Liveries implements View {
     background(#1E1E1E);
     
     rotate(-PI/2);
-    car.display(-150, 380, 112, 300);
+    car.display(-150, 380, 112, 300, reload);
+    reload = false;
     rotate(PI/2);
     
     Label label = new Label(900, 140, "LIVERIES");

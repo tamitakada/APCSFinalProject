@@ -1,4 +1,4 @@
-public class Car {
+public class Car implements Cloneable {
   //Car properties
   private double power;
   private double grip;
@@ -18,10 +18,12 @@ public class Car {
   private Suspension suspension;
   private Transmission transmission;
 
+  public WeatherDelegate delegate;
+
   public Car() {
     this.power = 0; this.grip = 0; this.aero = 0; this.weight = 0;
     livery = new Livery("defaultCar.png");
-    
+
     tire = new Tire();
     frontWing = new FrontWing();
     rearWing = new RearWing();
@@ -34,7 +36,7 @@ public class Car {
     this.power = power; this.grip = grip;
     this.aero = aero; this.weight = weight;
     livery = new Livery("defaultCar.png");
-    
+
     tire = new Tire();
     frontWing = new FrontWing();
     rearWing = new RearWing();
@@ -62,14 +64,14 @@ public class Car {
   public void shift() {
 
   }
-  
+
   public CarPart[] getParts() {
     return new CarPart[]{tire, frontWing, rearWing, engine, suspension, transmission};
   }
 
-  public void display(float x, float y, int w, int h) {
+  public void display(float x, float y, int w, int h, boolean reload) {
     imageMode(CENTER);
-    PImage car = livery.getImage();
+    PImage car = livery.getImage(reload);
     car.resize(w, h);
     image(car, x, y);
   }
@@ -145,30 +147,41 @@ public class Car {
     calculatePower();
     calculateWeight();
   }
-  
+
   public void setLivery(Livery livery) {
     this.livery = livery;
   }
-  
+
   private void calculatePower() {
     double totalPower = engine.power() + transmission.power();
     setPower(totalPower);
   }
-  
+
   private void calculateAero() {
     double total = engine.aero() + frontWing.aero() + rearWing.aero() + suspension.aero();
     setAero(total);
   }
-  
+
   private void calculateGrip() {
     setGrip(tire.grip());
   }
-  
+
   private void calculateWeight() {
     double total = 0;
     for (CarPart p: getParts()) {
       total += p.weight();
     }
     setWeight(total);
+  }
+
+  public Car clone() {
+    Car copy = new Car(getPower(), getGrip(), getAero(), getWeight());
+    copy.setTire(new Tire(tire.getLevel()));
+    copy.setFrontWing(new FrontWing(frontWing.getLevel()));
+    copy.setRearWing(new RearWing(rearWing.getLevel()));
+    copy.setEngine(new Engine(engine.getLevel()));
+    copy.setSuspension(new Suspension(suspension.getLevel()));
+    copy.setTransmission(new Transmission(transmission.getLevel()));
+    return copy;
   }
 }

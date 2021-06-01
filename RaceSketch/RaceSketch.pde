@@ -1,9 +1,11 @@
 public View current = new Home(new Car());
 public boolean newView = true;
+public Fonts fonts;
 
 void setup() {
   size(1200, 700);
   background(0);
+  fonts = new Fonts();
 }
 
 void draw() {

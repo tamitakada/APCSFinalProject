@@ -2,6 +2,7 @@ public class ImageButton extends Button {
   private String imageName;
   private float w; 
   private float h;
+  private PImage img;
 
   public ImageButton(float x, float y, float w, float h, String imageName) {
     super(x, y, w, h, #1E1E1E);
@@ -12,9 +13,9 @@ public class ImageButton extends Button {
   public void display() {
     super.display();
     if (!isHidden) {
+      if (img == null) img = loadImage(imageName);
       imageMode(CENTER);
-    
-      PImage img = loadImage(imageName);
+  
       img.resize((int)w, (int)h);
       
       float[] center = super.getCenter();

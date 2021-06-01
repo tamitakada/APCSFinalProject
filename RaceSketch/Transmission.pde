@@ -1,4 +1,12 @@
 public class Transmission extends CarPart {
+  public Transmission() {
+    super();
+  }
+  
+  public Transmission(double level) {
+    super();
+    setLevel(level);
+  }
    
   public double power() {
     return 50 + (10 * (getLevel() - 1));

@@ -46,8 +46,7 @@ public class Button {
       rect(x, y, rectWidth, rectHeight, 100);
       fill(textColor);
       textAlign(CENTER, CENTER);
-      PFont myFont = createFont("Raleway-Regular.ttf", 32);
-      textFont(myFont, textSize);
+      textFont(fonts.raleway, textSize);
       text(label, x, y - 2, rectWidth, rectHeight);
     }
   }
