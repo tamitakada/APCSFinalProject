@@ -60,18 +60,24 @@ public class Race implements View {
     rotate(radians(90));
     
     if (light == 5) {
+      if (startTime == 0) {
+        startTime = millis();
+      }
       car.display(115,moveCar,37,100);
       comp.display(-115,moveComp,37,100);
       moveCar -= (float) car.move()/15;
       moveComp -= (float) comp.move()/15;
+      
+      //calculate time for the cars
       if (moveComp > -550) {
-        compTime++;
+        carTime = millis() - startTime;
       }
       if (moveCar > -550) {
-        carTime++;
+        compTime = millis() - startTime;
       }
       
-    } 
+    }
+    
     else {
       car.display(115,550,37,100);
       comp.display(-115,550,37,100);
@@ -79,11 +85,11 @@ public class Race implements View {
     
     //display the times for the cars
     rotate(radians(-90));
-    Label displayCarTime = new Label(475, 175, String.valueOf(carTime/15));
+    Label displayCarTime = new Label(475, 175, String.valueOf(carTime/1000.0));
     displayCarTime.setSize(30);
     displayCarTime.setFont(Font.BUNGEEHAIRLINE);
     displayCarTime.display();
-    Label displayCompTime = new Label(475, -175, String.valueOf(compTime/15));
+    Label displayCompTime = new Label(475, -175, String.valueOf(compTime/1000.0));
     displayCompTime.setSize(30);
     displayCompTime.setFont(Font.BUNGEEHAIRLINE);
     displayCompTime.display();
