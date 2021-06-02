@@ -27,7 +27,7 @@ public class Race implements View, WeatherDelegate {
     
     double compLivery = Math.random();
     if (compLivery >= 0.5) comp.setLivery(new Livery("enemy_red.png"));
-    else comp.setLivery(new Livery("enemy_black.png"));
+    else comp.setLivery(new Livery("enemy_green.png"));
     
     buttons = new ArrayList<Button>();
     weather = new Weather();
