@@ -11,6 +11,9 @@ public class Race implements View, WeatherDelegate {
 
   private PImage bg;
   
+  private PImage loss;
+  private PImage win;
+  
   private boolean reload = true;
   
   private Weather weather;
@@ -47,6 +50,8 @@ public class Race implements View, WeatherDelegate {
     buttons.add(startButton);
     buttons.add(resetButton);
     bg = loadImage("raceBG.png");
+    loss = loadImage("lose_label.png");
+    win = loadImage("win_label.png");
   }
 
   public void display() {
@@ -113,18 +118,14 @@ public class Race implements View, WeatherDelegate {
         translate(-width/2,-height/2);
         
         rectMode(CENTER);
-        noStroke();
         fill(#1E1E1E);
-        rect(width/2, height/2, 700, 200);
+        rect(width/2, height/2, 540, 150);
+
+        PImage toShow = win;
+        if (moveCar > -550) toShow = loss; 
         
-        String res = "YOU WIN!";
-        if (moveCar > -550) res = "YOU LOSE"; 
-        
-        Label result = new Label(width/2, height/2 - 2, res);
-        result.setFont(Font.BUNGEEINLINE);
-        result.setColor(#FF00C7);
-        result.setSize(100);
-        result.display();
+        imageMode(CENTER);
+        image(toShow, width/2, height/2);
       }
     } else {
       car.display(115,moveCar,37,100,reload);

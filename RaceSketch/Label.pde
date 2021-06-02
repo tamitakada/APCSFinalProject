@@ -38,7 +38,6 @@ public class Label {
   
   public void display() {
     noStroke();
-    rectMode(CENTER);
     fill(textColor);
     textAlign(textAlignX, textAlignY);
     
