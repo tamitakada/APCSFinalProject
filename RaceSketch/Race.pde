@@ -83,36 +83,54 @@ public class Race implements View, WeatherDelegate {
       }
       
       //calculate time for the cars
-      if (moveCar > -550) {
+      if (moveCar > -550 && moveComp > -550) {
         moveCar -= (float) car.move()/50;
         carTime = millis() - startTime;
-      }
-      if (moveComp > -550) {
+        
         moveComp -= (float) comp.move()/50;
         compTime = millis() - startTime;
+        
+        car.display(115,moveCar,37,100,false);
+        comp.display(-115,moveComp,37,100,false);
+        
+        //display the times for the cars
+        rotate(radians(-90));
+        
+        Label displayCarTime = new Label(475, 175, String.valueOf(carTime/1000.0));
+        displayCarTime.setSize(30);
+        displayCarTime.setFont(Font.RALEWAYBOLD);
+        displayCarTime.display();
+        
+        Label displayCompTime = new Label(475, -175, String.valueOf(compTime/1000.0));
+        displayCompTime.setSize(30);
+        displayCompTime.setFont(Font.RALEWAYBOLD);
+        displayCompTime.display();
+      } else {
+        car.display(115,moveCar,37,100,false);
+        comp.display(-115,moveComp,37,100,false);
+        
+        rotate(radians(-90));
+        translate(-width/2,-height/2);
+        
+        rectMode(CENTER);
+        noStroke();
+        fill(#1E1E1E);
+        rect(width/2, height/2, 700, 200);
+        
+        String res = "YOU WIN!";
+        if (moveCar > -550) res = "YOU LOSE"; 
+        
+        Label result = new Label(width/2, height/2 - 2, res);
+        result.setFont(Font.BUNGEEINLINE);
+        result.setColor(#FF00C7);
+        result.setSize(100);
+        result.display();
       }
-      
-      car.display(115,moveCar,37,100,false);
-      comp.display(-115,moveComp,37,100,false);
-
-    }
-
-    else {
+    } else {
       car.display(115,moveCar,37,100,reload);
       comp.display(-115,moveComp,37,100,false);
       reload = false;
     }
-
-    //display the times for the cars
-    rotate(radians(-90));
-    Label displayCarTime = new Label(475, 175, String.valueOf(carTime/1000.0));
-    displayCarTime.setSize(30);
-    displayCarTime.setFont(Font.BUNGEEHAIRLINE);
-    displayCarTime.display();
-    Label displayCompTime = new Label(475, -175, String.valueOf(compTime/1000.0));
-    displayCompTime.setSize(30);
-    displayCompTime.setFont(Font.BUNGEEHAIRLINE);
-    displayCompTime.display();
   }
 
   public ArrayList<Button> getButtons() {
