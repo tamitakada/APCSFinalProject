@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class Car implements Cloneable {
   //Car properties
   private double power;
