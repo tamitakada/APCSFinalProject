@@ -31,3 +31,5 @@ Development Log
 [6/1] Sadid - I rewrote the code for the drag times using millis() instead of frames. I also made the cars stop at the finish line and created a reset button. 
 
 [6/2] Tami - I added a result display at the end of each race.
+
+[6/3] Tami - I factored in weather for the calculations for moving the car, and I added a weather information display to the Race view.
