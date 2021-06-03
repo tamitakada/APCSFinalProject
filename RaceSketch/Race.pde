@@ -10,25 +10,25 @@ public class Race implements View, WeatherDelegate {
   private int startTime;
 
   private PImage bg;
-  
+
   private PImage loss;
   private PImage win;
-  
+
   private boolean reload = true;
-  
+
   private Weather weather;
 
   public Race(Car car) {
     this.car = car;
     car.delegate = this;
-    
+
     comp = car.clone();
     comp.delegate = this;
-    
+
     double compLivery = Math.random();
     if (compLivery >= 0.5) comp.setLivery(new Livery("enemy_red.png"));
     else comp.setLivery(new Livery("enemy_green.png"));
-    
+
     buttons = new ArrayList<Button>();
     weather = new Weather();
     light = -1;
@@ -86,26 +86,26 @@ public class Race implements View, WeatherDelegate {
       if (startTime == 0) {
         startTime = millis();
       }
-      
+
       //calculate time for the cars
       if (moveCar > -550 && moveComp > -550) {
         moveCar -= (float) car.move()/50;
         carTime = millis() - startTime;
-        
+
         moveComp -= (float) comp.move()/50;
         compTime = millis() - startTime;
-        
+
         car.display(115,moveCar,37,100,false);
         comp.display(-115,moveComp,37,100,false);
-        
+
         //display the times for the cars
         rotate(radians(-90));
-        
+
         Label displayCarTime = new Label(475, 175, String.valueOf(carTime/1000.0));
         displayCarTime.setSize(30);
         displayCarTime.setFont(Font.RALEWAYBOLD);
         displayCarTime.display();
-        
+
         Label displayCompTime = new Label(475, -175, String.valueOf(compTime/1000.0));
         displayCompTime.setSize(30);
         displayCompTime.setFont(Font.RALEWAYBOLD);
@@ -113,17 +113,17 @@ public class Race implements View, WeatherDelegate {
       } else {
         car.display(115,moveCar,37,100,false);
         comp.display(-115,moveComp,37,100,false);
-        
+
         rotate(radians(-90));
         translate(-width/2,-height/2);
-        
+
         rectMode(CENTER);
         fill(#1E1E1E);
         rect(width/2, height/2, 540, 150);
 
         PImage toShow = win;
-        if (moveCar > -550) toShow = loss; 
-        
+        if (moveCar > -550) toShow = loss;
+
         imageMode(CENTER);
         image(toShow, width/2, height/2);
       }
@@ -145,6 +145,7 @@ public class Race implements View, WeatherDelegate {
     } else if (index == 1) {
       light = 0;
     } else if (index == 2) {
+      weather = new Weather();
       light = -1;
       moveCar = (float)(550 -  car.move()/50);
       moveComp = (float)(550 - comp.move()/50);
@@ -153,7 +154,7 @@ public class Race implements View, WeatherDelegate {
       startTime = 0;
     }
   }
-  
+
   public Weather getWeather() {
     return weather;
   }
