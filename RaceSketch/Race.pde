@@ -131,10 +131,14 @@ public class Race implements View, WeatherDelegate {
 
         rectMode(CENTER);
         fill(#1E1E1E);
-        rect(width/2, height/2, 540, 150);
 
         PImage toShow = win;
-        if (moveCar > -550) toShow = loss;
+        if (moveCar > -550) {
+          toShow = loss;
+          rect(width/2, height/2, 540, 150);
+        } else {
+          rect(width/2, height/2, 450, 150);
+        }
 
         imageMode(CENTER);
         image(toShow, width/2, height/2);
