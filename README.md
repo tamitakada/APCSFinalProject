@@ -27,4 +27,5 @@ Development Log
 [5/30] Tami - I created the Liveries view and made new car liveries. I also made the ImageButton class for buttons with images.   
 [5/30] Sadid - I set up both cars for the drag race. They automatically race as soon as the light turns green and their drag times are displayed.  
 
-[6/1] Tami - I made fonts/images load the minimum amount of times necessary. I began working the Weather and WeatherDelegate classes.
+[6/1] Tami - I made fonts/images load the minimum amount of times necessary. I began working the Weather and WeatherDelegate classes.   
+[6/1] Sadid - I rewrote the code for the drag times using millis() instead of frames. I also made the cars stop at the finish line and created a reset button.   
