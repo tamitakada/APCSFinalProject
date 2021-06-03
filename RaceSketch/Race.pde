@@ -1,3 +1,5 @@
+import java.text.DecimalFormat;
+
 public class Race implements View, WeatherDelegate {
   private Car car;
   private Car comp;
@@ -77,6 +79,16 @@ public class Race implements View, WeatherDelegate {
       ellipse(157.78-4*29.14,311.3,22.6,22.6);
       ellipse(157.78-4*29.14,387.01,22.6,22.6);
     }
+    
+    DecimalFormat f = new DecimalFormat("0.0");
+    Label weatherLabel = new Label(
+      900, 
+      height - 70, 
+      "Forecast: " + weather.getWeatherType() + "\nTemperature: " + f.format(weather.getTemp()) + " F\nWind speed: " + f.format(weather.getWindSpd()) + " m/s\nWind direction: " + f.format(weather.getWindDir()) + " degrees"
+    );
+    weatherLabel.setSize(18);
+    weatherLabel.setAlignment(LEFT, CENTER);
+    weatherLabel.display();
 
     //display and move the cars
     translate(width/2,height/2);
