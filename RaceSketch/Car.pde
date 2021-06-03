@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Car implements Cloneable {
   //Car properties
   private double power;
@@ -58,6 +60,21 @@ public class Car implements Cloneable {
       else if (luck <= 10) current *= 0.8;
       properties[i] = current;
     }
+
+    Weather weather = delegate.getWeather();
+    if (weather.getWeatherType() == WeatherType.RAINY) {
+      properties[1] -= Math.random() * 40 + 10;
+    }
+
+    double temp = weather.getTemp();
+    if (temp <= 32) {
+      properties[0] -= ((33 - temp) * (Math.random() * 3 + 2)) + 50;
+    } else if (temp >= 80) {
+      properties[0] -= ((temp - 79) * (Math.random() * 3 + 2)) + 50;
+    }
+
+    properties[2] += weather.getWindSpd() * cos(radians(weather.getWindDir())) * 50;
+
     return (properties[0] + properties[1] + properties[2] - getWeight()) / 60;
   }
 
