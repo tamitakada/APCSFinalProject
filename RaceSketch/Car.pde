@@ -94,6 +94,10 @@ public class Car implements Cloneable {
     setRpm(1000*gear);
   }
   
+  public void setGear(int g) {
+    gear = 0;
+  }
+  
   public void setRpm(int n){
     rpm = n;
   }
