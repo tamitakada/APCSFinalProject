@@ -79,13 +79,13 @@ public class Race implements View, WeatherDelegate {
       ellipse(157.78-4*29.14,311.3,22.6,22.6);
       ellipse(157.78-4*29.14,387.01,22.6,22.6);
     }
-    
+
     DecimalFormat f = new DecimalFormat("0.0");
     Label weatherLabel = new Label(
-      900, 
-      height - 70, 
-      "Forecast: " + weather.getWeatherType() + "\nTemperature: " + 
-      f.format(weather.getTemp()) + " F\nWind speed: " + f.format(weather.getWindSpd()) + 
+      900,
+      height - 70,
+      "Forecast: " + weather.getWeatherType() + "\nTemperature: " +
+      f.format(weather.getTemp()) + " F\nWind speed: " + f.format(weather.getWindSpd()) +
       " m/s\nWind direction: " + f.format(weather.getWindDir()) + " degrees"
     );
     weatherLabel.setSize(18);
@@ -107,7 +107,7 @@ public class Race implements View, WeatherDelegate {
       if (startTime == 0) {
         startTime = millis();
       }
-      
+
       // calculate time for the cars
       if (moveCar < 1073 && moveComp < 1073) {
         if (car.getRpm() > 9999) {
@@ -116,25 +116,25 @@ public class Race implements View, WeatherDelegate {
           if (car.getGear() > 0) {
             car.setRpm(car.getRpm()+50);
           }
-    
+
           moveCar = (float)  (Math.pow(moveCar + car.move(),car.getAcceleration()));
         }
-        
+
         carTime = millis() - startTime;
-        
+
         if (comp.getGear() == 0) {
           if (millis() >= startTime+100) {
             comp.incGear();
           }
         }
-        
+
         if (comp.getRpm() > 9500) {
           comp.incGear();
         } else {
           if (comp.getGear() > 0) {
             comp.setRpm(comp.getRpm()+50);
           }
-    
+
           moveComp = (float) (Math.pow(moveComp + comp.move(),comp.getAcceleration()));
         }
 
@@ -163,13 +163,15 @@ public class Race implements View, WeatherDelegate {
 
         imageMode(CENTER);
         image(toShow, width/2, height/2);
-        
+
         // display time of winner
         if (toShow == win) {
           Label displayCarTime = new Label(1000, 520, "Your Time: " + carTime/1000.0 + "s");
           displayCarTime.setSize(30);
           displayCarTime.setFont(Font.RALEWAYBOLD);
           displayCarTime.display();
+          
+          Records.points += 1000;
         } else {
           Label displayCompTime = new Label(1000, 170, "Opponent Time: " + compTime/1000.0 + "s");
           displayCompTime.setSize(30);
@@ -208,15 +210,14 @@ public class Race implements View, WeatherDelegate {
       comp.setRpm(0);
     }
   }
-  
+
   public void keyClicked(int code) {
     if (code == UP) {
-      
+
     }
   }
 
   public Weather getWeather() {
     return weather;
   }
-  
 }
