@@ -108,11 +108,11 @@ public class Race implements View, WeatherDelegate {
       }
 
       // calculate time for the cars
-      if (moveCar < 1072 && moveComp < 1072) {
-        moveCar = (float)  (Math.pow(moveCar,1.001) + car.move());
+      if (moveCar < 1073 && moveComp < 1073) {
+        moveCar = (float)  (Math.pow(moveCar + car.move(),1.001));
         carTime = millis() - startTime;
 
-        moveComp = (float) (Math.pow(moveComp,1.001) + comp.move());
+        moveComp = (float) (Math.pow(moveComp + comp.move(),1.001));
         compTime = millis() - startTime;
 
         car.display(115,550-moveCar,37,100,false);
@@ -129,7 +129,7 @@ public class Race implements View, WeatherDelegate {
         fill(#1E1E1E);
 
         PImage toShow = win;
-        if (moveCar < 1072) {
+        if (moveCar < 1073) {
           toShow = loss;
           rect(width/2, height/2, 540, 150);
         } else {
