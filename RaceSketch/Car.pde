@@ -87,7 +87,7 @@ public class Car implements Cloneable {
   }
   
   public void decGear() {
-    if (gear > 0) {
+    if (gear > 1) {
       gear--;
     }
   }
@@ -98,6 +98,17 @@ public class Car implements Cloneable {
   
   public int getRpm() {
     return rpm;
+  }
+  
+  public int getGear() {
+    return gear;
+  }
+
+  public double getAcceleration() {
+    if (gear == 0) {
+      return 0;
+    } 
+    return 1.001 + ((7 - gear) * .0001);
   }
 
   public CarPart[] getParts() {
