@@ -110,12 +110,6 @@ public class Race implements View, WeatherDelegate {
         car.display(115,550-moveCar,37,100,false);
         comp.display(-115,550-moveComp,37,100,false);
 
-        //display the times for the cars
-        //rotate(radians(-90));
-
-        
-
-        
       } else {
         car.display(115,550-moveCar,37,100,false);
         comp.display(-115,550-moveComp,37,100,false);
@@ -137,16 +131,17 @@ public class Race implements View, WeatherDelegate {
         imageMode(CENTER);
         image(toShow, width/2, height/2);
         
+        //display time of winner
         if (toShow == win) {
           Label displayCarTime = new Label(1000, 520, "Your Time: " + String.valueOf(carTime/1000.0) + "s");
-        displayCarTime.setSize(30);
-        displayCarTime.setFont(Font.RALEWAYBOLD);
-        displayCarTime.display();
+          displayCarTime.setSize(30);
+          displayCarTime.setFont(Font.RALEWAYBOLD);
+          displayCarTime.display();
         } else {
           Label displayCompTime = new Label(1000, 170, "Opponent Time: " + String.valueOf(compTime/1000.0) + "s");
-        displayCompTime.setSize(30);
-        displayCompTime.setFont(Font.RALEWAYBOLD);
-        displayCompTime.display();
+          displayCompTime.setSize(30);
+          displayCompTime.setFont(Font.RALEWAYBOLD);
+          displayCompTime.display();
         }
       }
     } else {
