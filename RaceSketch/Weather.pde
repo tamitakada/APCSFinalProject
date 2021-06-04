@@ -1,3 +1,11 @@
+interface WeatherDelegate {
+   public Weather getWeather();
+}
+
+
+////////////////////////////////////////
+
+
 class Weather {
   WeatherType weather;
   float windDirection; //Degrees
@@ -49,4 +57,12 @@ class Weather {
   public double getTemp() {
     return temperature;
   }
+}
+
+
+////////////////////////////////////////
+
+
+enum WeatherType {
+  SUNNY, RAINY
 }

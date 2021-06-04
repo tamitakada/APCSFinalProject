@@ -1,4 +1,0 @@
-enum WeatherType {
-  SUNNY,
-  RAINY
-}
