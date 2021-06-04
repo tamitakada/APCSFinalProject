@@ -97,4 +97,8 @@ public class Liveries implements View {
       car.setLivery(livery); 
     }
   }
+  
+  public void upKeyPressed() {
+    return;
+  }
 }

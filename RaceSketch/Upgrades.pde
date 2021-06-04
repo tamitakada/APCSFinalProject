@@ -88,4 +88,8 @@ public class Upgrades implements View {
       else carParts[(index - 1) / 2].decLevel();
     }
   }
+  
+  public void upKeyPressed() {
+    return;
+  }
 }

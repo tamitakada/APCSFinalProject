@@ -49,4 +49,8 @@ public class Home implements View {
   public ArrayList<Button> getButtons() {
     return buttons; 
   }
+  
+  public void upKeyPressed() {
+    return;
+  }
 }

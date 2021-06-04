@@ -103,7 +103,7 @@ public class Race implements View, WeatherDelegate {
     rotate(radians(90));
 
     if (light == 5) {
-      RaceSketch.setCar(car,light);
+      //RaceSketch.setCar(car,light);
       if (startTime == 0) {
         startTime = millis();
       }
@@ -207,6 +207,10 @@ public class Race implements View, WeatherDelegate {
       car.setRpm(0);
       comp.setRpm(0);
     }
+  }
+  
+  public void upKeyPressed() {
+    
   }
 
   public Weather getWeather() {

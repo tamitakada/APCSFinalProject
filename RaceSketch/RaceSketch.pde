@@ -29,18 +29,14 @@ void mousePressed() {
    }
 }
 
-public static void setCar(Car c, int l){
-  car = c;
-  light = l;
-}
-
 void keyPressed() {
-  if (light == 5) {
-    if (keyCode == UP) {
-      car.incGear();
-    }
-    if (keyCode == DOWN) {
-      car.decGear();
-    }
-  }
+  current.upKeyPressed();
+  //if (light == 5) {
+  //  if (keyCode == UP) {
+  //    car.incGear();
+  //  }
+  //  if (keyCode == DOWN) {
+  //    car.decGear();
+  //  }
+  //}
 }
