@@ -73,7 +73,7 @@ public class Car implements Cloneable {
 
     properties[2] += weather.getWindSpd() * cos(radians(weather.getWindDir())) * 50;
 
-    return (properties[0] + properties[1] + properties[2] - getWeight()) / 60;
+    return (properties[0] + properties[1] + properties[2] - getWeight()) / 1000;
   }
 
   public void shift() {
