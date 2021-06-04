@@ -34,8 +34,8 @@ public class Race implements View, WeatherDelegate {
     buttons = new ArrayList<Button>();
     weather = new Weather();
     light = -1;
-    moveCar = (float)(550 -  car.move()/50);
-    moveComp = (float)(550 - comp.move()/50);
+    moveCar = 0;
+    moveComp = 0;
     carTime = 0;
     compTime = 0;
     startTime = 0;
@@ -100,15 +100,15 @@ public class Race implements View, WeatherDelegate {
       }
 
       //calculate time for the cars
-      if (moveCar > -550 && moveComp > -550) {
-        moveCar -= (float) car.move()/50;
+      if (moveCar < 1100 && moveComp < 1100) {
+        moveCar = (float)  (Math.pow(moveCar,1.001) + car.move());
         carTime = millis() - startTime;
 
-        moveComp -= (float) comp.move()/50;
+        moveComp = (float) (Math.pow(moveComp,1.001) + comp.move());
         compTime = millis() - startTime;
 
-        car.display(115,moveCar,37,100,false);
-        comp.display(-115,moveComp,37,100,false);
+        car.display(115,550-moveCar,37,100,false);
+        comp.display(-115,550-moveComp,37,100,false);
 
         //display the times for the cars
         rotate(radians(-90));
@@ -123,8 +123,8 @@ public class Race implements View, WeatherDelegate {
         displayCompTime.setFont(Font.RALEWAYBOLD);
         displayCompTime.display();
       } else {
-        car.display(115,moveCar,37,100,false);
-        comp.display(-115,moveComp,37,100,false);
+        car.display(115,550-moveCar,37,100,false);
+        comp.display(-115,550-moveComp,37,100,false);
 
         rotate(radians(-90));
         translate(-width/2,-height/2);
@@ -133,7 +133,7 @@ public class Race implements View, WeatherDelegate {
         fill(#1E1E1E);
 
         PImage toShow = win;
-        if (moveCar > -550) {
+        if (moveCar < 1100) {
           toShow = loss;
           rect(width/2, height/2, 540, 150);
         } else {
@@ -144,8 +144,8 @@ public class Race implements View, WeatherDelegate {
         image(toShow, width/2, height/2);
       }
     } else {
-      car.display(115,moveCar,37,100,reload);
-      comp.display(-115,moveComp,37,100,false);
+      car.display(115,550,37,100,reload);
+      comp.display(-115,550,37,100,false);
       reload = false;
     }
   }
