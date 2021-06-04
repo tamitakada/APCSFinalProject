@@ -32,4 +32,7 @@ Development Log
 
 [6/2] Tami - I added a result display at the end of each race.
 
-[6/3] Tami - I factored in weather for the calculations for moving the car, and I added a weather information display to the Race view.
+[6/3] Tami - I factored in weather for the calculations for moving the car, and I added a weather information display to the Race view.    
+[6/3] Sadid - I reorganized the files and reduced the number of files.    
+
+[6/4] Sadid - I made the cars accelerate and added gears to the cars. The user had to shift usimg the arrow key sand teh opponent car shifts by itself.    
