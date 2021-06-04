@@ -10,7 +10,7 @@ void setup() {
 
 void draw() {
   if (newView) {
-    current.setUp(); 
+    current.setUp();
     newView = false;
   }
   current.display();
@@ -29,4 +29,9 @@ void mousePressed() {
 
 void keyPressed() {
   current.keyClicked(keyCode);
+}
+
+//User records
+public static class Records {
+  public static int points = 0;
 }
