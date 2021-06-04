@@ -84,12 +84,14 @@ public class Car implements Cloneable {
     if (gear < 6) {
       gear++;
     }
+    setRpm(1000*gear);
   }
   
   public void decGear() {
     if (gear > 1) {
       gear--;
     }
+    setRpm(1000*gear);
   }
   
   public void setRpm(int n){
