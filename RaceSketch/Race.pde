@@ -107,7 +107,7 @@ public class Race implements View, WeatherDelegate {
       if (startTime == 0) {
         startTime = millis();
       }
-
+      
       // calculate time for the cars
       if (moveCar < 1073 && moveComp < 1073) {
         if (car.getRpm() > 9999) {
@@ -121,8 +121,23 @@ public class Race implements View, WeatherDelegate {
         }
         
         carTime = millis() - startTime;
+        
+        if (comp.getGear() == 0) {
+          if (millis() >= startTime+100) {
+            comp.incGear();
+          }
+        }
+        
+        if (comp.getRpm() > 9500) {
+          comp.incGear();
+        } else {
+          if (comp.getGear() > 0) {
+            comp.setRpm(comp.getRpm()+50);
+          }
+    
+          moveComp = (float) (Math.pow(moveComp + comp.move(),comp.getAcceleration()));
+        }
 
-        moveComp = (float) (Math.pow(moveComp + comp.move(),1.001));
         compTime = millis() - startTime;
 
         car.display(115,550-moveCar,37,100,false);
