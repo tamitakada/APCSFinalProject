@@ -6,7 +6,7 @@ public class Car implements Cloneable {
   private double weight;
 
   private Gear gear;
-
+  
   //Car appearance
   private Livery livery;
 
@@ -199,4 +199,12 @@ public class Car implements Cloneable {
     copy.setTransmission(new Transmission(transmission.getLevel()));
     return copy;
   }
+}
+
+
+////////////////////////////////////////
+
+
+enum Gear {
+  FIRST, SECOND, THIRD, FOURTH, FIFTH, SIXTH, SEVENTH, EIGHTH
 }
