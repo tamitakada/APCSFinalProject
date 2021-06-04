@@ -89,7 +89,7 @@ public class Upgrades implements View {
     }
   }
   
-  public void upKeyPressed() {
+  public void keyClicked(int code) {
     return;
   }
 }

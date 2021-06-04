@@ -30,7 +30,7 @@ void mousePressed() {
 }
 
 void keyPressed() {
-  current.upKeyPressed();
+  current.keyClicked(keyCode);
   //if (light == 5) {
   //  if (keyCode == UP) {
   //    car.incGear();

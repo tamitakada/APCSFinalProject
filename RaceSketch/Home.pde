@@ -50,7 +50,7 @@ public class Home implements View {
     return buttons; 
   }
   
-  public void upKeyPressed() {
+  public void keyClicked(int code) {
     return;
   }
 }

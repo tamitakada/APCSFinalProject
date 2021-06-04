@@ -209,8 +209,10 @@ public class Race implements View, WeatherDelegate {
     }
   }
   
-  public void upKeyPressed() {
-    
+  public void keyClicked(int code) {
+    if (code == UP) {
+      
+    }
   }
 
   public Weather getWeather() {
