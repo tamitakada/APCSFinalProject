@@ -49,15 +49,15 @@ public class Engine extends CarPart {
   }
   
   public double power() {
-    return 800 + (50 * (getLevel() - 1));
+    return 80 + (5 * (getLevel() - 1));
   }
   
   public double aero() {
-    return 100 + (100 * (getLevel() - 1));
+    return 10 + (10 * (getLevel() - 1));
   }
   
   public double weight() {
-    return 400 - (20 * (getLevel() - 1));
+    return 40 - (2 * (getLevel() - 1));
   }
   
   public String getDisplayName() {
@@ -80,11 +80,11 @@ public class FrontWing extends CarPart {
   }
    
   public double aero() {
-    return 2000 + (100 * (getLevel() - 1));
+    return 200 + (10 * (getLevel() - 1));
   }
   
   public double weight() {
-    return 40 - (5 * (getLevel() - 1));
+    return 4 - (0.5 * (getLevel() - 1));
   }
   
   public String getDisplayName() {
@@ -107,11 +107,11 @@ public class RearWing extends CarPart {
   }
    
   public double aero() {
-    return 2000 + (100 * (getLevel() - 1));
+    return 200 + (10 * (getLevel() - 1));
   }
   
   public double weight() {
-    return 40 - (5 * (getLevel() - 1));
+    return 4 - (0.5 * (getLevel() - 1));
   }
   
   public String getDisplayName() {
@@ -134,11 +134,11 @@ public class Suspension extends CarPart {
   }
    
   public double aero() {
-    return 1000 + (100 * (getLevel() - 1));
+    return 100 + (10 * (getLevel() - 1));
   }
   
   public double weight() {
-    return 100 - (10 * (getLevel() - 1));
+    return 10 - (1 * (getLevel() - 1));
   }
   
   public String getDisplayName() {
@@ -161,7 +161,7 @@ public class Tire extends CarPart {
   }
   
   public double grip() {
-    return 100 + (50 * (getLevel() - 1));
+    return 10 + (5 * (getLevel() - 1));
   }
  
   public String getDisplayName() {
@@ -184,11 +184,11 @@ public class Transmission extends CarPart {
   }
    
   public double power() {
-    return 50 + (10 * (getLevel() - 1));
+    return 5 + (1 * (getLevel() - 1));
   }
   
   public double weight() {
-    return 100 - (10 * (getLevel() - 1));
+    return 10 - (1 * (getLevel() - 1));
   }
   
   public String getDisplayName() {
