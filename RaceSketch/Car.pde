@@ -95,6 +95,10 @@ public class Car implements Cloneable {
   public void setRpm(int n){
     rpm = n;
   }
+  
+  public int getRpm() {
+    return rpm;
+  }
 
   public CarPart[] getParts() {
     return new CarPart[]{tire, frontWing, rearWing, engine, suspension, transmission};
