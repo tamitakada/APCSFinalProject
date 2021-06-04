@@ -100,7 +100,7 @@ public class Race implements View, WeatherDelegate {
       }
 
       //calculate time for the cars
-      if (moveCar < 1100 && moveComp < 1100) {
+      if (moveCar < 1072 && moveComp < 1072) {
         moveCar = (float)  (Math.pow(moveCar,1.001) + car.move());
         carTime = millis() - startTime;
 
@@ -111,17 +111,11 @@ public class Race implements View, WeatherDelegate {
         comp.display(-115,550-moveComp,37,100,false);
 
         //display the times for the cars
-        rotate(radians(-90));
+        //rotate(radians(-90));
 
-        Label displayCarTime = new Label(475, 175, String.valueOf(carTime/1000.0));
-        displayCarTime.setSize(30);
-        displayCarTime.setFont(Font.RALEWAYBOLD);
-        displayCarTime.display();
+        
 
-        Label displayCompTime = new Label(475, -175, String.valueOf(compTime/1000.0));
-        displayCompTime.setSize(30);
-        displayCompTime.setFont(Font.RALEWAYBOLD);
-        displayCompTime.display();
+        
       } else {
         car.display(115,550-moveCar,37,100,false);
         comp.display(-115,550-moveComp,37,100,false);
@@ -133,7 +127,7 @@ public class Race implements View, WeatherDelegate {
         fill(#1E1E1E);
 
         PImage toShow = win;
-        if (moveCar < 1100) {
+        if (moveCar < 1072) {
           toShow = loss;
           rect(width/2, height/2, 540, 150);
         } else {
@@ -142,6 +136,18 @@ public class Race implements View, WeatherDelegate {
 
         imageMode(CENTER);
         image(toShow, width/2, height/2);
+        
+        if (toShow == win) {
+          Label displayCarTime = new Label(1000, 520, "Your Time: " + String.valueOf(carTime/1000.0) + "s");
+        displayCarTime.setSize(30);
+        displayCarTime.setFont(Font.RALEWAYBOLD);
+        displayCarTime.display();
+        } else {
+          Label displayCompTime = new Label(1000, 170, "Opponent Time: " + String.valueOf(compTime/1000.0) + "s");
+        displayCompTime.setSize(30);
+        displayCompTime.setFont(Font.RALEWAYBOLD);
+        displayCompTime.display();
+        }
       }
     } else {
       car.display(115,550,37,100,reload);
