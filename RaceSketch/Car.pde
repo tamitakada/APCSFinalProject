@@ -5,7 +5,8 @@ public class Car implements Cloneable {
   private double aero;
   private double weight;
 
-  private Gear gear;
+  private int gear;
+  private int rpm;
   
   //Car appearance
   private Livery livery;
@@ -30,6 +31,9 @@ public class Car implements Cloneable {
     engine = new Engine();
     suspension = new Suspension();
     transmission = new Transmission();
+    
+    gear = 0;
+    rpm = 0;
   }
 
   public Car(double power, double grip, double aero, double weight) {
@@ -76,8 +80,20 @@ public class Car implements Cloneable {
     return (properties[0] + properties[1] + properties[2] - getWeight()) / 1000;
   }
 
-  public void shift() {
-
+  public void incGear() {
+    if (gear < 6) {
+      gear++;
+    }
+  }
+  
+  public void decGear() {
+    if (gear > 0) {
+      gear--;
+    }
+  }
+  
+  public void setRpm(int n){
+    rpm = n;
   }
 
   public CarPart[] getParts() {
@@ -199,12 +215,4 @@ public class Car implements Cloneable {
     copy.setTransmission(new Transmission(transmission.getLevel()));
     return copy;
   }
-}
-
-
-////////////////////////////////////////
-
-
-enum Gear {
-  FIRST, SECOND, THIRD, FOURTH, FIFTH, SIXTH, SEVENTH, EIGHTH
 }
