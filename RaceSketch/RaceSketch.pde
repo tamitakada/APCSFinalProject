@@ -1,19 +1,17 @@
 public View current = new Home(new Car());
 public boolean newView = true;
 public Fonts fonts;
-public static Car car;
-public static int light;
 
 void setup() {
   size(1200, 700);
   background(0);
   fonts = new Fonts();
-  light = 0;
 }
 
 void draw() {
   if (newView) {
-    current.setUp(); newView = false;
+    current.setUp(); 
+    newView = false;
   }
   current.display();
 }
@@ -31,12 +29,4 @@ void mousePressed() {
 
 void keyPressed() {
   current.keyClicked(keyCode);
-  //if (light == 5) {
-  //  if (keyCode == UP) {
-  //    car.incGear();
-  //  }
-  //  if (keyCode == DOWN) {
-  //    car.decGear();
-  //  }
-  //}
 }
