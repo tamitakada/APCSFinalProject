@@ -92,8 +92,8 @@ public class Race implements View, WeatherDelegate {
     weatherLabel.setAlignment(LEFT, CENTER);
     weatherLabel.display();
 
-    // display rpm
-    Label rpm = new Label(200, 600, "RPM: " + car.getRpm());
+    // display rpm and gear
+    Label rpm = new Label(200, 620, "RPM: " + car.getRpm() + "\nGear:" + car.getGear());
     rpm.setSize(30);
     rpm.setFont(Font.RALEWAYBOLD);
     rpm.display();
@@ -103,13 +103,23 @@ public class Race implements View, WeatherDelegate {
     rotate(radians(90));
 
     if (light == 5) {
+      RaceSketch.setCar(car,light);
       if (startTime == 0) {
         startTime = millis();
       }
 
       // calculate time for the cars
       if (moveCar < 1073 && moveComp < 1073) {
-        moveCar = (float)  (Math.pow(moveCar + car.move(),1.001));
+        if (car.getRpm() > 9999) {
+          moveCar = (float)  (moveCar + car.move());
+        } else {
+          if (car.getGear() > 0) {
+            car.setRpm(car.getRpm()+50);
+          }
+    
+          moveCar = (float)  (Math.pow(moveCar + car.move(),car.getAcceleration()));
+        }
+        
         carTime = millis() - startTime;
 
         moveComp = (float) (Math.pow(moveComp + comp.move(),1.001));
@@ -159,15 +169,6 @@ public class Race implements View, WeatherDelegate {
     }
   }
 
-  public void keyPressed() {
-    if (keyCode == UP) {
-      car.incGear();
-    }
-    if (keyCode == DOWN) {
-      car.decGear();
-    }
-  }
-
   public ArrayList<Button> getButtons() {
     return buttons;
   }
@@ -192,4 +193,5 @@ public class Race implements View, WeatherDelegate {
   public Weather getWeather() {
     return weather;
   }
+  
 }
