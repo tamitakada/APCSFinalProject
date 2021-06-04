@@ -197,11 +197,15 @@ public class Race implements View, WeatherDelegate {
     } else if (index == 2) {
       weather = new Weather();
       light = -1;
-      moveCar = (float)(550 -  car.move()/50);
-      moveComp = (float)(550 - comp.move()/50);
+      moveCar = 0;
+      moveComp = 0;
       carTime = 0;
       compTime = 0;
       startTime = 0;
+      car.setGear(0);
+      comp.setGear(0);
+      car.setRpm(0);
+      comp.setRpm(0);
     }
   }
 
