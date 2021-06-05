@@ -36,3 +36,4 @@ Development Log
 [6/3] Sadid - I reorganized the files and reduced the number of files.    
 
 [6/4] Sadid - I made the cars accelerate and added gears to the cars. The user had to shift usimg the arrow key sand teh opponent car shifts by itself.    
+[6/4] Tami - I added keyClicked() to respond to key presses in different views. I also started working on adding a currency system, and I added price tags on the liveries in the Liveries view.
