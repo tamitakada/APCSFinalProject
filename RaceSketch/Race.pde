@@ -157,27 +157,26 @@ public class Race implements View, WeatherDelegate {
         if (moveCar < 1073) {
           toShow = loss;
           rect(width/2, height/2, 540, 150);
+          
+          //Display time of opponent
+          Label displayCompTime = new Label(1000, 170, "Opponent Time: " + compTime/1000.0 + "s");
+          displayCompTime.setSize(30);
+          displayCompTime.setFont(Font.RALEWAYBOLD);
+          displayCompTime.display();
         } else {
           rect(width/2, height/2, 450, 150);
-        }
-
-        imageMode(CENTER);
-        image(toShow, width/2, height/2);
-
-        // display time of winner
-        if (toShow == win) {
+          
+          //Display time of user
           Label displayCarTime = new Label(1000, 520, "Your Time: " + carTime/1000.0 + "s");
           displayCarTime.setSize(30);
           displayCarTime.setFont(Font.RALEWAYBOLD);
           displayCarTime.display();
           
           Records.points += 1000;
-        } else {
-          Label displayCompTime = new Label(1000, 170, "Opponent Time: " + compTime/1000.0 + "s");
-          displayCompTime.setSize(30);
-          displayCompTime.setFont(Font.RALEWAYBOLD);
-          displayCompTime.display();
         }
+
+        imageMode(CENTER);
+        image(toShow, width/2, height/2);
       }
     } else {
       car.display(115,550,37,100,reload);
@@ -212,8 +211,9 @@ public class Race implements View, WeatherDelegate {
   }
 
   public void keyClicked(int code) {
-    if (code == UP) {
-
+    if (light == 5) {
+      if (code == UP) car.incGear();
+      else if (code == DOWN) car.decGear();
     }
   }
 
