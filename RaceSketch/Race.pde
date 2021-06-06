@@ -15,6 +15,7 @@ public class Race implements View, WeatherDelegate {
 
   private PImage loss;
   private PImage win;
+  private boolean addedPoints = false;
 
   private boolean reload = true;
 
@@ -172,7 +173,10 @@ public class Race implements View, WeatherDelegate {
           displayCarTime.setFont(Font.RALEWAYBOLD);
           displayCarTime.display();
           
-          Records.points += 1000;
+          if (!addedPoints) {
+            Records.points += 1000;
+            addedPoints = true;
+          }
         }
 
         imageMode(CENTER);
@@ -196,6 +200,7 @@ public class Race implements View, WeatherDelegate {
     } else if (index == 1) {
       light = 0;
     } else if (index == 2) {
+      addedPoints = false;
       weather = new Weather();
       light = -1;
       moveCar = 0;
