@@ -2,7 +2,6 @@ public class Achievement {
   
   private int value;
   private AchievementType type;
-  public boolean isAchieved;
   
   public Achievement(int value, AchievementType type) {
     this.value = value; this.type = type;
