@@ -16,6 +16,7 @@ public class Race implements View, WeatherDelegate {
   private PImage loss;
   private PImage win;
   private boolean addedPoints = false;
+  private boolean resetWeather = false;
 
   private boolean reload = true;
 
@@ -45,13 +46,17 @@ public class Race implements View, WeatherDelegate {
   public void setUp() {
     Button backButton = new Button(100, 50, 70, 40, #1E1E1E);
     backButton.setLabel("< Back", 255, 20);
+
     Button startButton = new Button(1100, 50, 70, 40, #1E1E1E);
     startButton.setLabel("Start", 255,20);
+
     Button resetButton = new Button(900, 50, 70, 40, #1E1E1E);
     resetButton.setLabel("Reset", 255,20);
+
     buttons.add(backButton);
     buttons.add(startButton);
     buttons.add(resetButton);
+
     bg = loadImage("raceBG.png");
     loss = loadImage("lose_label.png");
     win = loadImage("win_label.png");
@@ -158,7 +163,7 @@ public class Race implements View, WeatherDelegate {
         if (moveCar < 1073) {
           toShow = loss;
           rect(width/2, height/2, 540, 150);
-          
+
           //Display time of opponent
           Label displayCompTime = new Label(1000, 170, "Opponent Time: " + compTime/1000.0 + "s");
           displayCompTime.setSize(30);
@@ -166,13 +171,13 @@ public class Race implements View, WeatherDelegate {
           displayCompTime.display();
         } else {
           rect(width/2, height/2, 450, 150);
-          
+
           //Display time of user
           Label displayCarTime = new Label(1000, 520, "Your Time: " + carTime/1000.0 + "s");
           displayCarTime.setSize(30);
           displayCarTime.setFont(Font.RALEWAYBOLD);
           displayCarTime.display();
-          
+
           if (!addedPoints) {
             Records.points += 1000;
             addedPoints = true;
@@ -199,20 +204,28 @@ public class Race implements View, WeatherDelegate {
       newView = true;
     } else if (index == 1) {
       light = 0;
-    } else if (index == 2) {
-      addedPoints = false;
-      weather = new Weather();
+      resetRaceSettings();
+    } else {
       light = -1;
-      moveCar = 0;
-      moveComp = 0;
-      carTime = 0;
-      compTime = 0;
-      startTime = 0;
-      car.setGear(0);
-      comp.setGear(0);
-      car.setRpm(0);
-      comp.setRpm(0);
+      resetRaceSettings();
+      resetWeather = false;
     }
+  }
+  
+  private void resetRaceSettings() {
+    addedPoints = false;
+    if (resetWeather) {
+      weather = new Weather();
+    } else resetWeather = true;
+    moveCar = 0;
+    moveComp = 0;
+    carTime = 0;
+    compTime = 0;
+    startTime = 0;
+    car.setGear(0);
+    comp.setGear(0);
+    car.setRpm(0);
+    comp.setRpm(0);
   }
 
   public void keyClicked(int code) {
