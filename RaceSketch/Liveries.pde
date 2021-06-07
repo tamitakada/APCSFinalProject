@@ -3,18 +3,18 @@ public class Liveries implements View {
   private ArrayList<Button> buttons;
   private Livery[][] liveryList = {
     {
-      new Livery("red_purple_car.png"),
-      new Livery("cyan_yellow_car.png"),
-      new Livery("green_car.png"),
-      new Livery("white_blue_car.png"),
-      new Livery("purple_car.png")
+      new Livery("red_purple_car.png", 8000),
+      new Livery("green_car.png", 8000),
+      new Livery("cyan_yellow_car.png", 10000),
+      new Livery("white_blue_car.png", 15000),
+      new Livery("purple_car.png", 15000)
     },
     {
-      new Livery("pink_blue_car.png"),
-      new Livery("yellow_blue_car.png"),
-      new Livery("blue_car.png"),
-      new Livery("orange_car.png"),
-      new Livery("salmon_car.png")
+      new Livery("salmon_car.png", 15000),
+      new Livery("yellow_blue_car.png", 20000),
+      new Livery("blue_car.png", 20000),
+      new Livery("orange_car.png", 25000),
+      new Livery("pink_blue_car.png", 50000),
     }
   };
   private int currentPage;
