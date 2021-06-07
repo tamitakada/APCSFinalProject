@@ -33,5 +33,6 @@ void keyPressed() {
 
 //User records
 public static class Records {
-  public static int points = 0;
+  public static int points = 9999999;
+  public static ArrayList<Livery> liveries = new ArrayList<Livery>();
 }
