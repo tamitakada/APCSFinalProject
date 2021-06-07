@@ -9,6 +9,8 @@ public class Label {
   private int textAlignY;
   private Font font;
   
+  public boolean isHidden = false;
+  
   public Label(float x, float y, String text) {
     this.x = x; this.y = y; this.text = text;
     textSize = 20;
@@ -37,25 +39,27 @@ public class Label {
   }
   
   public void display() {
-    noStroke();
-    fill(textColor);
-    textAlign(textAlignX, textAlignY);
-    
-    PFont currentFont = fonts.raleway;
-    switch (font) {
-      case BUNGEEHAIRLINE:
-        currentFont = fonts.bungeeHairline;
-        break;
-      case BUNGEEINLINE:
-        currentFont = fonts.bungeeInline;
-        break;
-      case RALEWAYBOLD:
-        currentFont = fonts.ralewayBold;
-        break;
-      default:
-        break;
+    if (!isHidden) {
+      noStroke();
+      fill(textColor);
+      textAlign(textAlignX, textAlignY);
+      
+      PFont currentFont = fonts.raleway;
+      switch (font) {
+        case BUNGEEHAIRLINE:
+          currentFont = fonts.bungeeHairline;
+          break;
+        case BUNGEEINLINE:
+          currentFont = fonts.bungeeInline;
+          break;
+        case RALEWAYBOLD:
+          currentFont = fonts.ralewayBold;
+          break;
+        default:
+          break;
+      }
+      textFont(currentFont, textSize);
+      text(text, x, y); 
     }
-    textFont(currentFont, textSize);
-    text(text, x, y);
   }
 }
