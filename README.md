@@ -38,4 +38,4 @@ Development Log
 [6/4] Sadid - I made the cars accelerate and added gears to the cars. The user had to shift usimg the arrow key sand teh opponent car shifts by itself.    
 [6/4] Tami - I added keyClicked() to respond to key presses in different views. I also started working on adding a currency system, and I added price tags on the liveries in the Liveries view.
 
-[6/6] Tami - I finished adding the currency system to purchase liveries and be rewarded for winning races. I made the start button restart the race without having to click the restart button first in the Race view.
+[6/6] Tami - I finished adding the currency system to purchase liveries/upgrades and be rewarded for winning races. I made the start button restart the race without having to click the restart button first in the Race view.
