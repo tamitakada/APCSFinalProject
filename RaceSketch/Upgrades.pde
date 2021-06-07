@@ -3,7 +3,7 @@ public class Upgrades implements View {
   private ArrayList<Button> buttons;
   private CarPart[] carParts;
   private ArrayList<Label[]> labels;
-  
+
   private boolean reload = true;
 
   public Upgrades(Car car) {
@@ -25,30 +25,37 @@ public class Upgrades implements View {
         xCors = new int[]{780, 1000, 1100};
         yCor = 250 + 120 * (i - 3);
       }
-      
+
       //Buttons
       Button up = new Button(xCors[2] + 20, yCor, 30, 30, #1E1E1E);
       up.setLabel("+", 255, 22);
-      
+
       Button down = new Button(xCors[2] - 20, yCor, 30, 30, #1E1E1E);
       down.setLabel("-", 255, 22);
-      
+
       buttons.add(up);
       buttons.add(down);
-      
+
       //Labels
       Label name = new Label(xCors[0], yCor, carParts[i].getDisplayName());
       name.setSize(24);
       name.setFont(Font.RALEWAYBOLD);
       name.setAlignment(LEFT, CENTER);
+      
+      int partCost = carParts[i].getCost();
+      String cost = "Cost: " + partCost;
+      if (partCost == 0) cost = "Max Level";
+      
+      Label costDisplay = new Label(xCors[0] + 40, yCor + 30, cost);
+      costDisplay.setSize(16);
 
       Label level = new Label(xCors[1], yCor, "Level");
       level.setSize(24);
 
       Label current = new Label(xCors[2], yCor, "" + (int) carParts[i].getLevel());
       current.setSize(24);
-      
-      labels.add(new Label[]{name, level, current});
+
+      labels.add(new Label[]{name, level, current, costDisplay});
     }
   }
 
@@ -56,7 +63,7 @@ public class Upgrades implements View {
     background(#1E1E1E);
     car.display(200, 380, 187, 500, reload);
     reload = false;
-    
+
     for (Button b: buttons) {
       b.display();
     }
@@ -65,13 +72,23 @@ public class Upgrades implements View {
     label.setSize(65);
     label.setFont(Font.BUNGEEHAIRLINE);
     label.display();
-    
+
     for (int i = 0; i < carParts.length; i++) {
       labels.get(i)[2].setText("" + (int) carParts[i].getLevel());
+      
+      int partCost = carParts[i].getCost();
+      String cost = "Cost: " + partCost;
+      if (partCost == 0) cost = "Max Level";
+      labels.get(i)[3].setText(cost);
+      
       for (Label l: labels.get(i)) {
         l.display();
       }
     }
+    
+    Label pointsDisplay = new Label(width - 130, 50, "" + Records.points + " points");
+    pointsDisplay.setFont(Font.RALEWAYBOLD);
+    pointsDisplay.display();
   }
 
   public ArrayList<Button> getButtons() {
@@ -88,7 +105,7 @@ public class Upgrades implements View {
       else carParts[(index - 1) / 2].decLevel();
     }
   }
-  
+
   public void keyClicked(int code) {
     return;
   }
