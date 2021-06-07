@@ -102,8 +102,8 @@ public class Upgrades implements View {
     } else {
       boolean up = (index % 2 != 0);
       if (up && Records.points >= carParts[(index - 1) / 2].getCost()) {
-        carParts[(index - 1) / 2].incLevel();
         Records.points -= carParts[(index - 1) / 2].getCost();
+        carParts[(index - 1) / 2].incLevel();
       } else carParts[(index - 1) / 2].decLevel();
     }
   }
