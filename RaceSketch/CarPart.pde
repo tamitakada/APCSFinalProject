@@ -5,6 +5,11 @@ public class CarPart {
     level = 1;
   }
   
+  public int getCost() {
+    if (getLevel() < 5) return (int) getLevel() * 5000;
+    return 0;
+  }
+  
   public double weight() {
     return 0.0; 
   }
