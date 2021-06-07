@@ -65,6 +65,10 @@ public class Liveries implements View {
     label.setSize(65);
     label.setFont(Font.BUNGEEHAIRLINE);
     label.display();
+    
+    Label pointsDisplay = new Label(width - 130, 50, "" + Records.points + " points");
+    pointsDisplay.setFont(Font.RALEWAYBOLD);
+    pointsDisplay.display();
 
     for (Button b: buttons) {
       b.display();
@@ -103,6 +107,7 @@ public class Liveries implements View {
         
         Label priceTag = new Label(150 + i * 220, height - 70, "" + liveryList[currentPage][i].getCost());
         priceTag.setSize(22);
+        priceTag.isHidden = Records.liveries.contains(liveryList[currentPage][i]);
         prices.add(priceTag);
       }
       buttons.get(1).isHidden = (currentPage == liveryList.length - 1);
@@ -113,6 +118,8 @@ public class Liveries implements View {
         if (Records.points >= 8000) {
           Records.points -= 8000;
           Records.liveries.add(livery); 
+          car.setLivery(livery);
+          prices.get(index - 3).isHidden = true;
         }
       } else {
         car.setLivery(livery); 
