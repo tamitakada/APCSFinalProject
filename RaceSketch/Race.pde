@@ -180,6 +180,12 @@ public class Race implements View, WeatherDelegate {
 
           if (!addedPoints) {
             Records.points += 1000;
+            int lastAchievement = 0;
+            if (Records.achievements.size() > 0) 
+              lastAchievement = Records.achievements.get(Records.achievements.size() - 1).getValue();
+            int nextAchievement = lastAchievement + 10000 * (Records.achievements.size() + 1);
+            if (Records.points >= nextAchievement)
+              Records.achievements.add(new Achievement(nextAchievement, AchievementType.PTS));
             addedPoints = true;
           }
         }
