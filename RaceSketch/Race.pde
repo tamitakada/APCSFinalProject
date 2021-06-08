@@ -281,9 +281,11 @@ public class Race implements View, WeatherDelegate {
       }
     }
     if (light == 5) {
-      fill(#04FF00);
-      ellipse(157.78-4*29.14,311.3,22.6,22.6);
-      ellipse(157.78-4*29.14,387.01,22.6,22.6);
+      if (car.getGear() < 1) {
+        fill(#04FF00);
+        ellipse(157.78-4*29.14,311.3,22.6,22.6);
+        ellipse(157.78-4*29.14,387.01,22.6,22.6);
+      }
     }
 
     DecimalFormat f = new DecimalFormat("0.0");
