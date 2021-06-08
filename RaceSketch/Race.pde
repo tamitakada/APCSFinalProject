@@ -73,6 +73,7 @@ public class Race implements View, WeatherDelegate {
 
   public void display() {
     
+    //display for the short race
     if (longer == false) {
       background(bg);
   
@@ -106,7 +107,7 @@ public class Race implements View, WeatherDelegate {
               comp.incGear();
             }
           }
-          if (comp.getRpm() > 9999) {
+          if (comp.getRpm() > 9700) {
             comp.incGear();
           } else {
             if (comp.getGear() > 0) {
@@ -115,11 +116,7 @@ public class Race implements View, WeatherDelegate {
             moveComp = (float) (Math.pow(moveComp + comp.move(),comp.getAcceleration()));
           }
           compTime = millis() - startTime;
-  
-          
-  
         } else {
-  
           rotate(radians(-90));
           translate(-width/2,-height/2);
   
@@ -128,6 +125,101 @@ public class Race implements View, WeatherDelegate {
   
           PImage toShow = win;
           if (moveCar < 1073) {
+            toShow = loss;
+            rect(width/2, height/2, 540, 150);
+  
+            //Display time of opponent
+            Label displayCompTime = new Label(1000, 170, "Opponent Time: " + compTime/1000.0 + "s");
+            displayCompTime.setSize(30);
+            displayCompTime.setFont(Font.RALEWAYBOLD);
+            displayCompTime.display();
+          } else {
+            rect(width/2, height/2, 450, 150);
+  
+            //Display time of user
+            Label displayCarTime = new Label(1000, 520, "Your Time: " + carTime/1000.0 + "s");
+            displayCarTime.setSize(30);
+            displayCarTime.setFont(Font.RALEWAYBOLD);
+            displayCarTime.display();
+  
+            if (!addedPoints) {
+              Records.points += 1000;
+              int lastAchievement = 0;
+              if (Records.achievements.size() > 0) 
+                lastAchievement = Records.achievements.get(Records.achievements.size() - 1).getValue();
+              int nextAchievement = lastAchievement + 10000 * (Records.achievements.size() + 1);
+              if (Records.points >= nextAchievement)
+                Records.achievements.add(new Achievement(nextAchievement, AchievementType.PTS));
+              addedPoints = true;
+            }
+          }
+  
+          imageMode(CENTER);
+          image(toShow, width/2, height/2);
+          
+          translate(width/2,height/2);
+          rotate(radians(90));
+        }
+      } else {
+        car.display(115,550,37,100,reload);
+        comp.display(-115,550,37,100,false);
+        reload = false;
+      }
+    }
+    
+    //display for the longer race
+    if (longer == true) {
+      
+      image(bg,1200-moveCar,350);
+  
+      translate(width/2,height/2);
+      rotate(radians(90));
+  
+      //display cars
+      car.display(115,550-moveCar,37,100,false);
+      comp.display(-115,550-moveComp,37,100,false);
+  
+      if (light == 5) {
+        //RaceSketch.setCar(car,light);
+        if (startTime == 0) {
+          startTime = millis();
+        }
+  
+        // calculate time and move cars
+        if (moveCar < 1200 && moveComp < 1200){
+          if (car.getRpm() > 9999) {
+            moveCar = (float)  (moveCar + car.move());
+          } else {
+            if (car.getGear() > 0) {
+              car.setRpm(car.getRpm()+100);
+            }
+            moveCar = (float) (1.005 * (Math.pow(moveCar + car.move(),car.getAcceleration())));
+          }
+          carTime = millis() - startTime;
+  
+          if (comp.getGear() == 0) {
+            if (millis() >= startTime+100) {
+              comp.incGear();
+            }
+          }
+          if (comp.getRpm() > 9700) {
+            comp.incGear();
+          } else {
+            if (comp.getGear() > 0) {
+              comp.setRpm(comp.getRpm()+100);
+            }
+            moveComp = (float) (1.005 * (Math.pow(moveComp + comp.move(),comp.getAcceleration())));
+          }
+          compTime = millis() - startTime;
+        } else {
+          rotate(radians(-90));
+          translate(-width/2,-height/2);
+  
+          rectMode(CENTER);
+          fill(#1E1E1E);
+  
+          PImage toShow = win;
+          if (moveCar < 1200) {
             toShow = loss;
             rect(width/2, height/2, 540, 150);
   
@@ -233,9 +325,11 @@ public class Race implements View, WeatherDelegate {
     }
     else if (index == 3) {
       longer = false;
+      bg = loadImage("raceBG.png");
     }
     else if (index == 4) {
       longer = true;
+      bg = loadImage("raceBG2.png");
     }
   }
   
