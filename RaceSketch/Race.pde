@@ -134,7 +134,7 @@ public class Race implements View, WeatherDelegate {
           }
         }
 
-        if (comp.getRpm() > 9500) {
+        if (comp.getRpm() > 9999) {
           comp.incGear();
         } else {
           if (comp.getGear() > 0) {
@@ -211,10 +211,11 @@ public class Race implements View, WeatherDelegate {
     } else if (index == 1) {
       light = 0;
       resetRaceSettings();
+      resetWeather = false;
     } else {
       light = -1;
       resetRaceSettings();
-      resetWeather = false;
+      resetWeather = true;
     }
   }
   
@@ -222,7 +223,7 @@ public class Race implements View, WeatherDelegate {
     addedPoints = false;
     if (resetWeather) {
       weather = new Weather();
-    } else resetWeather = true;
+    } 
     moveCar = 0;
     moveComp = 0;
     carTime = 0;
