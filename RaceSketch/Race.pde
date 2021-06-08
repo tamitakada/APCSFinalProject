@@ -325,10 +325,16 @@ public class Race implements View, WeatherDelegate {
     }
     else if (index == 3) {
       longer = false;
+      light = -1;
+      resetRaceSettings();
+      resetWeather = true;
       bg = loadImage("raceBG.png");
     }
     else if (index == 4) {
       longer = true;
+      light = -1;
+      resetRaceSettings();
+      resetWeather = true;
       bg = loadImage("raceBG2.png");
     }
   }
