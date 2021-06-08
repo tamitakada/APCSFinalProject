@@ -19,6 +19,7 @@ public class Race implements View, WeatherDelegate {
   private boolean resetWeather = false;
 
   private boolean reload = true;
+  private boolean longer = false; 
 
   private Weather weather;
 
@@ -52,10 +53,18 @@ public class Race implements View, WeatherDelegate {
 
     Button resetButton = new Button(900, 50, 70, 40, #1E1E1E);
     resetButton.setLabel("Reset", 255,20);
+    
+    Button shortRace = new Button(500, 50, 70, 80, #1E1E1E);
+    shortRace.setLabel("Short\nRace",255,20);
+    
+    Button longRace = new Button(700, 50, 70, 80, #1E1E1E);
+    longRace.setLabel("Long\nRace",255,20);
 
     buttons.add(backButton);
     buttons.add(startButton);
     buttons.add(resetButton);
+    buttons.add(shortRace);
+    buttons.add(longRace);
 
     bg = loadImage("raceBG.png");
     loss = loadImage("lose_label.png");
@@ -104,7 +113,6 @@ public class Race implements View, WeatherDelegate {
     rpm.setFont(Font.RALEWAYBOLD);
     rpm.display();
 
-    // display and move the cars
     translate(width/2,height/2);
     rotate(radians(90));
 
@@ -114,7 +122,7 @@ public class Race implements View, WeatherDelegate {
         startTime = millis();
       }
 
-      // calculate time for the cars
+      // calculate time and move cars
       if (moveCar < 1073 && moveComp < 1073) {
         if (car.getRpm() > 9999) {
           moveCar = (float)  (moveCar + car.move());
@@ -122,10 +130,8 @@ public class Race implements View, WeatherDelegate {
           if (car.getGear() > 0) {
             car.setRpm(car.getRpm()+50);
           }
-
           moveCar = (float)  (Math.pow(moveCar + car.move(),car.getAcceleration()));
         }
-
         carTime = millis() - startTime;
 
         if (comp.getGear() == 0) {
@@ -133,19 +139,17 @@ public class Race implements View, WeatherDelegate {
             comp.incGear();
           }
         }
-
         if (comp.getRpm() > 9999) {
           comp.incGear();
         } else {
           if (comp.getGear() > 0) {
             comp.setRpm(comp.getRpm()+50);
           }
-
           moveComp = (float) (Math.pow(moveComp + comp.move(),comp.getAcceleration()));
         }
-
         compTime = millis() - startTime;
 
+        //display cars
         car.display(115,550-moveCar,37,100,false);
         comp.display(-115,550-moveComp,37,100,false);
 
