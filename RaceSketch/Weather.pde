@@ -58,8 +58,8 @@ class Weather {
     return temperature;
   }
   
-  public PShape getPuddle(int x, int y) {
-    color blue = color(#0066B0);
+  public void getPuddle(int x, int y) {
+    color blue = color(#003C84);
     PShape puddle, p1, p2, p3, p4;
     puddle = createShape(GROUP);
     noStroke();
@@ -69,7 +69,7 @@ class Weather {
     p3 = createShape(ELLIPSE,x-40,y-25,15,20);
     p4 = createShape(ELLIPSE,x,y+60,20,15);
     puddle.addChild(p1); puddle.addChild(p2); puddle.addChild(p3); puddle.addChild(p4);
-    return puddle;
+    shape(puddle);
   }
   
 }
