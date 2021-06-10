@@ -41,3 +41,4 @@ Development Log
 [6/6] Tami - I finished adding the currency system to purchase liveries/upgrades and be rewarded for winning races. I made the start button restart the race without having to click the restart button first in the Race view.
 
 [6/7] Tami - I started working on adding an achievements system.
+[6/70 Sadid - I created the background for a longer race and made a button that would start a longer race. 
