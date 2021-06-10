@@ -183,8 +183,10 @@ public class Race implements View, WeatherDelegate {
       rotate(radians(90));
       
       if (weather.getWeatherType() == WeatherType.RAINY) {
-        weather.getPuddle(0,0);
-        weather.getPuddle(100,100);
+        weather.getPuddle(-100,200);
+        rotate(radians(90));
+        weather.getPuddle(-100,-100);
+        rotate(radians(-90));
       }
       
       //display cars
