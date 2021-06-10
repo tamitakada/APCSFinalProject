@@ -11,15 +11,13 @@ public class Race implements View, WeatherDelegate {
   private float compTime;
   private int startTime;
 
-  private PImage bg;
-
   private PImage loss;
   private PImage win;
   private boolean addedPoints = false;
   private boolean resetWeather = false;
 
   private boolean reload = true;
-  private boolean longer = false; 
+  private boolean white = true;
 
   private Weather weather;
 
@@ -53,239 +51,121 @@ public class Race implements View, WeatherDelegate {
 
     Button resetButton = new Button(900, 50, 70, 40, #1E1E1E);
     resetButton.setLabel("Reset", 255,20);
-    
-    Button shortRace = new Button(500, 50, 70, 80, #1E1E1E);
-    shortRace.setLabel("Short\nRace",255,20);
-    
-    Button longRace = new Button(700, 50, 70, 80, #1E1E1E);
-    longRace.setLabel("Long\nRace",255,20);
 
     buttons.add(backButton);
     buttons.add(startButton);
     buttons.add(resetButton);
-    buttons.add(shortRace);
-    buttons.add(longRace);
 
-    bg = loadImage("raceBG.png");
     loss = loadImage("lose_label.png");
     win = loadImage("win_label.png");
   }
 
   public void display() {
-    
-    //display for the short race
-    if (longer == false) {
-      background(bg);
-  
-      translate(width/2,height/2);
-      rotate(radians(90));
-  
-      //display cars
-      car.display(115,550-moveCar,37,100,false);
-      comp.display(-115,550-moveComp,37,100,false);
-  
-      if (light == 5) {
-        //RaceSketch.setCar(car,light);
-        if (startTime == 0) {
-          startTime = millis();
+    background(#1E1E1E);
+
+    if (light == 5) {
+      if (startTime == 0) startTime = millis();
+
+      // calculate time and move cars
+      if (moveCar < 2500 && moveComp < 2500) {
+        if (car.getRpm() > 9999) moveCar += car.move(); 
+        else {
+          if (car.getGear() > 0) car.setRpm(car.getRpm()+50);
+          moveCar = (float)  (Math.pow(moveCar + car.move(),car.getAcceleration()));
         }
-  
-        // calculate time and move cars
-        if (moveCar < 1073 && moveComp < 1073) {
-          if (car.getRpm() > 9999) {
-            moveCar = (float)  (moveCar + car.move());
-          } else {
-            if (car.getGear() > 0) {
-              car.setRpm(car.getRpm()+50);
-            }
-            moveCar = (float)  (Math.pow(moveCar + car.move(),car.getAcceleration()));
-          }
-          carTime = millis() - startTime;
-  
-          if (comp.getGear() == 0) {
-            if (millis() >= startTime+100) {
-              comp.incGear();
-            }
-          }
-          if (comp.getRpm() > 9700) {
-            comp.incGear();
-          } else {
-            if (comp.getGear() > 0) {
-              comp.setRpm(comp.getRpm()+50);
-            }
-            moveComp = (float) (Math.pow(moveComp + comp.move(),comp.getAcceleration()));
-          }
-          compTime = millis() - startTime;
-        } else {
-          rotate(radians(-90));
-          translate(-width/2,-height/2);
-  
-          rectMode(CENTER);
-          fill(#1E1E1E);
-  
-          PImage toShow = win;
-          if (moveCar < 1073) {
-            toShow = loss;
-            rect(width/2, height/2, 540, 150);
-  
-            //Display time of opponent
-            Label displayCompTime = new Label(1000, 170, "Opponent Time: " + compTime/1000.0 + "s");
-            displayCompTime.setSize(30);
-            displayCompTime.setFont(Font.RALEWAYBOLD);
-            displayCompTime.display();
-          } else {
-            rect(width/2, height/2, 450, 150);
-  
-            //Display time of user
-            Label displayCarTime = new Label(1000, 520, "Your Time: " + carTime/1000.0 + "s");
-            displayCarTime.setSize(30);
-            displayCarTime.setFont(Font.RALEWAYBOLD);
-            displayCarTime.display();
-  
-            if (!addedPoints) {
-              Records.points += 1000;
-              int lastAchievement = 0;
-              if (Records.achievements.size() > 0) 
-                lastAchievement = Records.achievements.get(Records.achievements.size() - 1).getValue();
-              int nextAchievement = lastAchievement + 10000 * (Records.achievements.size() + 1);
-              if (Records.points >= nextAchievement)
-                Records.achievements.add(new Achievement(nextAchievement, AchievementType.PTS));
-              addedPoints = true;
-            }
-          }
-  
-          imageMode(CENTER);
-          image(toShow, width/2, height/2);
-          
-          translate(width/2,height/2);
-          rotate(radians(90));
+        carTime = millis() - startTime;
+
+        if (comp.getGear() == 0 && millis() >= startTime+100) comp.incGear();
+        else if (comp.getRpm() > 9700) comp.incGear();
+        else {
+          if (comp.getGear() > 0) comp.setRpm(comp.getRpm()+50);
+          moveComp = (float) (Math.pow(moveComp + comp.move(),comp.getAcceleration()));
         }
+        compTime = millis() - startTime;
       } else {
-        car.display(115,550,37,100,reload);
-        comp.display(-115,550,37,100,false);
-        reload = false;
+        rectMode(CENTER);
+        fill(#1E1E1E);
+
+        PImage toShow = loss;
+        String time = "Opponent Time: " + compTime/1000.0 + "s";
+        if (moveComp < 2500) {
+          toShow = win;
+          time = "Your Time: " + carTime/1000.0 + "s";
+          rect(width/2, height/2, 450, 150);
+          if (!addedPoints) {
+            Records.points += 1000;
+            int lastAchievement = 0;
+            if (Records.achievements.size() > 0)
+              lastAchievement = Records.achievements.get(Records.achievements.size() - 1).getValue();
+            int nextAchievement = lastAchievement + 10000 * (Records.achievements.size() + 1);
+            if (Records.points >= nextAchievement)
+              Records.achievements.add(new Achievement(nextAchievement, AchievementType.PTS));
+            addedPoints = true;
+          }
+        }
+        
+        Label displayTime = new Label(width/2, height/2 + 100, time);
+        displayTime.setSize(30);
+        displayTime.setFont(Font.RALEWAYBOLD);
+        displayTime.display();
+        
+        imageMode(CENTER);
+        image(toShow, width/2, height/2);
       }
     }
     
-    //display for the longer race
-    if (longer == true) {
-      
-      image(bg,1200-moveCar,350);
-  
-      translate(width/2,height/2);
-      rotate(radians(90));
-  
-      //display cars
-      car.display(115,550-moveCar,37,100,false);
-      comp.display(-115,550-moveComp,37,100,false);
-  
-      if (light == 5) {
-        //RaceSketch.setCar(car,light);
-        if (startTime == 0) {
-          startTime = millis();
-        }
-  
-        // calculate time and move cars
-        if (moveCar < 1200 && moveComp < 1200){
-          if (car.getRpm() > 9999) {
-            moveCar = (float)  (moveCar + car.move());
-          } else {
-            if (car.getGear() > 0) {
-              car.setRpm(car.getRpm()+100);
-            }
-            moveCar = (float) (1.005 * (Math.pow(moveCar + car.move(),car.getAcceleration())));
-          }
-          carTime = millis() - startTime;
-  
-          if (comp.getGear() == 0) {
-            if (millis() >= startTime+100) {
-              comp.incGear();
-            }
-          }
-          if (comp.getRpm() > 9700) {
-            comp.incGear();
-          } else {
-            if (comp.getGear() > 0) {
-              comp.setRpm(comp.getRpm()+100);
-            }
-            moveComp = (float) (1.005 * (Math.pow(moveComp + comp.move(),comp.getAcceleration())));
-          }
-          compTime = millis() - startTime;
-        } else {
-          rotate(radians(-90));
-          translate(-width/2,-height/2);
-  
-          rectMode(CENTER);
-          fill(#1E1E1E);
-  
-          PImage toShow = win;
-          if (moveCar < 1200) {
-            toShow = loss;
-            rect(width/2, height/2, 540, 150);
-  
-            //Display time of opponent
-            Label displayCompTime = new Label(1000, 170, "Opponent Time: " + compTime/1000.0 + "s");
-            displayCompTime.setSize(30);
-            displayCompTime.setFont(Font.RALEWAYBOLD);
-            displayCompTime.display();
-          } else {
-            rect(width/2, height/2, 450, 150);
-  
-            //Display time of user
-            Label displayCarTime = new Label(1000, 520, "Your Time: " + carTime/1000.0 + "s");
-            displayCarTime.setSize(30);
-            displayCarTime.setFont(Font.RALEWAYBOLD);
-            displayCarTime.display();
-  
-            if (!addedPoints) {
-              Records.points += 1000;
-              int lastAchievement = 0;
-              if (Records.achievements.size() > 0) 
-                lastAchievement = Records.achievements.get(Records.achievements.size() - 1).getValue();
-              int nextAchievement = lastAchievement + 10000 * (Records.achievements.size() + 1);
-              if (Records.points >= nextAchievement)
-                Records.achievements.add(new Achievement(nextAchievement, AchievementType.PTS));
-              addedPoints = true;
-            }
-          }
-  
-          imageMode(CENTER);
-          image(toShow, width/2, height/2);
-          
-          translate(width/2,height/2);
-          rotate(radians(90));
-        }
-      } else {
-        car.display(115,550,37,100,reload);
-        comp.display(-115,550,37,100,false);
-        reload = false;
-      }
+    float fraction = moveCar / 2500;
+    boolean white = true;
+    if ((int) (fraction * width) / (width / 60) % 2 == 0) white = false; 
+    
+    rectMode(CORNER);
+    if (white) fill(255);
+    else fill(#FF0000);
+    float firstSize = (fraction * width) % (width / 60);
+    rect(width - firstSize, 150, firstSize, 20);
+    rect(width - firstSize, 530, firstSize, 20);
+    
+    float x = width - firstSize;
+    while (x > 0) {
+      x -= width/60;
+      white = !white;
+      if (white) fill(255);
+      else fill(#FF0000);
+      rect(x, 150, width/60, 20);
+      rect(x, 530, width/60, 20);
+    }
+    
+    translate(width/2,height/2);
+    rotate(radians(90));
+
+    //display cars
+    if (moveCar > moveComp) {
+      car.display(115,550 - (moveCar - moveComp),37,100,false);
+      comp.display(-115,550,37,100,false); 
+    } else {
+      car.display(115,550,37,100,false);
+      comp.display(-115,550 - (moveComp - moveCar),37,100,false); 
     }
     
     rotate(radians(-90));
     translate(-width/2,-height/2);
     
-    // display the buttons
+    //display the buttons
     for (Button b: buttons) {
       b.display();
     }
 
     // display the lights for the dountdown
-    if (light >= 0) {
-      if (light < 5) {
-        fill(#FBFF00);
-        ellipse(157.78-light*29.14,311.3,22.6,22.6);
-        ellipse(157.78-light*29.14,387.01,22.6,22.6);
-        delay(1000);
-        light++;
-      }
-    }
-    if (light == 5) {
-      if (car.getGear() < 1) {
-        fill(#04FF00);
-        ellipse(157.78-4*29.14,311.3,22.6,22.6);
-        ellipse(157.78-4*29.14,387.01,22.6,22.6);
-      }
+    if (light >= 0 && light < 5) {
+      fill(#FBFF00);
+      ellipse(157.78-light*29.14,311.3,22.6,22.6);
+      ellipse(157.78-light*29.14,387.01,22.6,22.6);
+      delay(1000);
+      light++;
+    } else if (light == 5 && car.getGear() < 1) {
+      fill(#04FF00);
+      ellipse(157.78-4*29.14,311.3,22.6,22.6);
+      ellipse(157.78-4*29.14,387.01,22.6,22.6);
     }
 
     DecimalFormat f = new DecimalFormat("0.0");
@@ -305,7 +185,6 @@ public class Race implements View, WeatherDelegate {
     rpm.setSize(30);
     rpm.setFont(Font.RALEWAYBOLD);
     rpm.display();
-    
   }
 
   public ArrayList<Button> getButtons() {
@@ -325,27 +204,13 @@ public class Race implements View, WeatherDelegate {
       resetRaceSettings();
       resetWeather = true;
     }
-    else if (index == 3) {
-      longer = false;
-      light = -1;
-      resetRaceSettings();
-      resetWeather = true;
-      bg = loadImage("raceBG.png");
-    }
-    else if (index == 4) {
-      longer = true;
-      light = -1;
-      resetRaceSettings();
-      resetWeather = true;
-      bg = loadImage("raceBG2.png");
-    }
   }
-  
+
   private void resetRaceSettings() {
     addedPoints = false;
     if (resetWeather) {
       weather = new Weather();
-    } 
+    }
     moveCar = 0;
     moveComp = 0;
     carTime = 0;
