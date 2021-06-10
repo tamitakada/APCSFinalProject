@@ -63,6 +63,7 @@ public class Race implements View, WeatherDelegate {
   public void display() {
     background(#1E1E1E);
 
+    boolean showEnd = false;
     if (light == 5) {
       if (startTime == 0) startTime = millis();
 
@@ -82,36 +83,7 @@ public class Race implements View, WeatherDelegate {
           moveComp = (float) (Math.pow(moveComp + comp.move(),comp.getAcceleration()));
         }
         compTime = millis() - startTime;
-      } else {
-        rectMode(CENTER);
-        fill(#1E1E1E);
-
-        PImage toShow = loss;
-        String time = "Opponent Time: " + compTime/1000.0 + "s";
-        if (moveComp < 2500) {
-          toShow = win;
-          time = "Your Time: " + carTime/1000.0 + "s";
-          rect(width/2, height/2, 450, 150);
-          if (!addedPoints) {
-            Records.points += 1000;
-            int lastAchievement = 0;
-            if (Records.achievements.size() > 0)
-              lastAchievement = Records.achievements.get(Records.achievements.size() - 1).getValue();
-            int nextAchievement = lastAchievement + 10000 * (Records.achievements.size() + 1);
-            if (Records.points >= nextAchievement)
-              Records.achievements.add(new Achievement(nextAchievement, AchievementType.PTS));
-            addedPoints = true;
-          }
-        }
-        
-        Label displayTime = new Label(width/2, height/2 + 100, time);
-        displayTime.setSize(30);
-        displayTime.setFont(Font.RALEWAYBOLD);
-        displayTime.display();
-
-        imageMode(CENTER);
-        image(toShow, width/2, height/2);
-      }
+      } else showEnd = true;
     }
 
     float fraction = moveCar / 2500;
@@ -146,6 +118,13 @@ public class Race implements View, WeatherDelegate {
 
     translate(width/2,height/2);
     rotate(radians(90));
+    
+    if (weather.getWeatherType() == WeatherType.RAINY) {
+       weather.getPuddle(-100,200);
+       rotate(radians(90));
+       weather.getPuddle(-100,-100);
+       rotate(radians(-90));
+    }
 
     //display cars
     if (moveCar > moveComp) {
@@ -155,16 +134,40 @@ public class Race implements View, WeatherDelegate {
       car.display(115,550,37,100,false);
       comp.display(-115,550 - (moveComp - moveCar),37,100,false);
     }
-    
-    if (weather.getWeatherType() == WeatherType.RAINY) {
-       weather.getPuddle(-100,200);
-       rotate(radians(90));
-       weather.getPuddle(-100,-100);
-       rotate(radians(-90));
-    }
 
     rotate(radians(-90));
     translate(-width/2,-height/2);
+    
+    if (showEnd) {
+      rectMode(CENTER);
+        fill(#1E1E1E);
+
+        PImage toShow = loss;
+        String time = "Opponent Time: " + compTime/1000.0 + "s";
+        if (moveComp < 2500) {
+          toShow = win;
+          time = "Your Time: " + carTime/1000.0 + "s";
+          rect(width/2, height/2, 450, 150);
+          if (!addedPoints) {
+            Records.points += 1000;
+            int lastAchievement = 0;
+            if (Records.achievements.size() > 0)
+              lastAchievement = Records.achievements.get(Records.achievements.size() - 1).getValue();
+            int nextAchievement = lastAchievement + 10000 * (Records.achievements.size() + 1);
+            if (Records.points >= nextAchievement)
+              Records.achievements.add(new Achievement(nextAchievement, AchievementType.PTS));
+            addedPoints = true;
+          }
+        }
+        
+        Label displayTime = new Label(width/2, height/2 + 100, time);
+        displayTime.setSize(30);
+        displayTime.setFont(Font.RALEWAYBOLD);
+        displayTime.display();
+
+        imageMode(CENTER);
+        image(toShow, width/2, height/2); 
+    }
 
     //display the buttons
     for (Button b: buttons) {
