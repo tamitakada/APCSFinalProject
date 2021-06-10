@@ -80,6 +80,13 @@ public class Race implements View, WeatherDelegate {
       translate(width/2,height/2);
       rotate(radians(90));
   
+      if (weather.getWeatherType() == WeatherType.RAINY) {
+        weather.getPuddle(-100,200);
+        rotate(radians(90));
+        weather.getPuddle(-100,-100);
+        rotate(radians(-90));
+      }
+  
       //display cars
       car.display(115,550-moveCar,37,100,false);
       comp.display(-115,550-moveComp,37,100,false);
@@ -174,7 +181,12 @@ public class Race implements View, WeatherDelegate {
   
       translate(width/2,height/2);
       rotate(radians(90));
-  
+      
+      if (weather.getWeatherType() == WeatherType.RAINY) {
+        weather.getPuddle(0,0);
+        weather.getPuddle(100,100);
+      }
+      
       //display cars
       car.display(115,550-moveCar,37,100,false);
       comp.display(-115,550-moveComp,37,100,false);
@@ -305,7 +317,7 @@ public class Race implements View, WeatherDelegate {
     rpm.setSize(30);
     rpm.setFont(Font.RALEWAYBOLD);
     rpm.display();
-    
+   
   }
 
   public ArrayList<Button> getButtons() {
