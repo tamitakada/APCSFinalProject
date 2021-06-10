@@ -115,17 +115,26 @@ public class Race implements View, WeatherDelegate {
     }
 
     float fraction = moveCar / 2500;
-    boolean white = true;
-    if ((int) (fraction * width) / (width / 60) % 2 == 0) white = false;
+    boolean white = false;
+    if ((int) (fraction * width) / (width / 60) % 2 == 0) white = true;
 
     rectMode(CORNER);
     if (white) fill(255);
     else fill(#FF0000);
     float firstSize = (fraction * width) % (width / 60);
-    rect(width - firstSize, 150, firstSize, 20);
-    rect(width - firstSize, 530, firstSize, 20);
-
     float x = width - firstSize;
+    
+    if (2500 - moveCar < width) {
+      fill(255);
+      rect(2500 - moveCar, 150, width/60, 400);
+      rect(2500 - moveCar - firstSize, 150, firstSize, 20);
+      rect(2500 - moveCar - firstSize, 530, firstSize, 20);
+      x = 2500 - moveCar - firstSize;
+    } else {
+      rect(width - firstSize, 150, firstSize, 20);
+      rect(width - firstSize, 530, firstSize, 20);
+    }
+    
     while (x > 0) {
       x -= width/60;
       white = !white;
