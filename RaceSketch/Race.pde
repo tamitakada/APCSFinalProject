@@ -68,7 +68,7 @@ public class Race implements View, WeatherDelegate {
 
       // calculate time and move cars
       if (moveCar < 2500 && moveComp < 2500) {
-        if (car.getRpm() > 9999) moveCar += car.move(); 
+        if (car.getRpm() > 9999) moveCar += car.move();
         else {
           if (car.getGear() > 0) car.setRpm(car.getRpm()+50);
           moveCar = (float)  (Math.pow(moveCar + car.move(),car.getAcceleration()));
@@ -108,23 +108,23 @@ public class Race implements View, WeatherDelegate {
         displayTime.setSize(30);
         displayTime.setFont(Font.RALEWAYBOLD);
         displayTime.display();
-        
+
         imageMode(CENTER);
         image(toShow, width/2, height/2);
       }
     }
-    
+
     float fraction = moveCar / 2500;
     boolean white = true;
-    if ((int) (fraction * width) / (width / 60) % 2 == 0) white = false; 
-    
+    if ((int) (fraction * width) / (width / 60) % 2 == 0) white = false;
+
     rectMode(CORNER);
     if (white) fill(255);
     else fill(#FF0000);
     float firstSize = (fraction * width) % (width / 60);
     rect(width - firstSize, 150, firstSize, 20);
     rect(width - firstSize, 530, firstSize, 20);
-    
+
     float x = width - firstSize;
     while (x > 0) {
       x -= width/60;
@@ -134,22 +134,29 @@ public class Race implements View, WeatherDelegate {
       rect(x, 150, width/60, 20);
       rect(x, 530, width/60, 20);
     }
-    
+
     translate(width/2,height/2);
     rotate(radians(90));
 
     //display cars
     if (moveCar > moveComp) {
       car.display(115,550 - (moveCar - moveComp),37,100,false);
-      comp.display(-115,550,37,100,false); 
+      comp.display(-115,550,37,100,false);
     } else {
       car.display(115,550,37,100,false);
-      comp.display(-115,550 - (moveComp - moveCar),37,100,false); 
+      comp.display(-115,550 - (moveComp - moveCar),37,100,false);
     }
     
+    if (weather.getWeatherType() == WeatherType.RAINY) {
+       weather.getPuddle(-100,200);
+       rotate(radians(90));
+       weather.getPuddle(-100,-100);
+       rotate(radians(-90));
+    }
+
     rotate(radians(-90));
     translate(-width/2,-height/2);
-    
+
     //display the buttons
     for (Button b: buttons) {
       b.display();

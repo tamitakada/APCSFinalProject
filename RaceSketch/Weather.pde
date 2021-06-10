@@ -57,6 +57,21 @@ class Weather {
   public double getTemp() {
     return temperature;
   }
+  
+  public void getPuddle(int x, int y) {
+    color blue = color(#003C84);
+    PShape puddle, p1, p2, p3, p4;
+    puddle = createShape(GROUP);
+    noStroke();
+    fill(blue);
+    p1 = createShape(ELLIPSE,x,y,60,70);
+    p2 = createShape(ELLIPSE,x+30,y+20,60,70);
+    p3 = createShape(ELLIPSE,x-40,y-25,15,20);
+    p4 = createShape(ELLIPSE,x,y+60,20,15);
+    puddle.addChild(p1); puddle.addChild(p2); puddle.addChild(p3); puddle.addChild(p4);
+    shape(puddle);
+  }
+  
 }
 
 

@@ -6,7 +6,7 @@ public class CarPart {
   }
   
   public int getCost() {
-    if (getLevel() < 5) return (int) getLevel() * 5000;
+    if (getLevel() < 5) return (int) getLevel() * 1000;
     return 0;
   }
   
