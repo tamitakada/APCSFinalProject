@@ -167,12 +167,6 @@ public class Race implements View, WeatherDelegate {
           rect(width/2, height/2, 450, 150);
           if (!addedPoints) {
             Records.points += 1000;
-            int lastAchievement = 0;
-            if (Records.achievements.size() > 0)
-              lastAchievement = Records.achievements.get(Records.achievements.size() - 1).getValue();
-            int nextAchievement = lastAchievement + 10000 * (Records.achievements.size() + 1);
-            if (Records.points >= nextAchievement)
-              Records.achievements.add(new Achievement(nextAchievement, AchievementType.PTS));
             addedPoints = true;
           }
         }
@@ -217,7 +211,7 @@ public class Race implements View, WeatherDelegate {
     weatherLabel.display();
 
     // display rpm and gear
-    Label rpm = new Label(200, 620, "RPM: " + car.getRpm() + "\nGear:" + car.getGear());
+    Label rpm = new Label(200, 620, "RPM: " + car.getRpm() + "\nGear: " + car.getGear());
     rpm.setSize(30);
     rpm.setFont(Font.RALEWAYBOLD);
     rpm.display();
