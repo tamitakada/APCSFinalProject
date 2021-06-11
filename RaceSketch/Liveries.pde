@@ -115,8 +115,8 @@ public class Liveries implements View {
     } else {
       Livery livery = liveryList[currentPage][index - 3];
       if (!Records.liveries.contains(livery)) {
-        if (Records.points >= 8000) {
-          Records.points -= 8000;
+        if (Records.points >= livery.getCost()) {
+          Records.points -= livery.getCost();
           Records.liveries.add(livery); 
           car.setLivery(livery);
           prices.get(index - 3).isHidden = true;
