@@ -134,9 +134,6 @@ public class Race implements View, WeatherDelegate {
       rect(x, 150, width/60, 20);
       rect(x, 530, width/60, 20);
     }
-    
-    imageMode(CORNER);
-    image(baseLights, -(fraction * 600), 296);
 
     translate(width/2,height/2);
     rotate(radians(90));
@@ -147,6 +144,15 @@ public class Race implements View, WeatherDelegate {
        weather.getPuddle((int)(-100+moveCar),-100);
        rotate(radians(-90));
     }
+    
+    rotate(radians(-90));
+    translate(-width/2,-height/2);
+    
+    imageMode(CORNER);
+    image(baseLights, -(fraction * 2000), 296);
+    
+    translate(width/2,height/2);
+    rotate(radians(90));
 
     //display cars
     if (moveCar > moveComp) {
