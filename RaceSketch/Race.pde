@@ -104,7 +104,7 @@ public class Race implements View, WeatherDelegate {
       rect(2500 - moveCar - firstSize, 150, firstSize, 20);
       rect(2500 - moveCar - firstSize, 530, firstSize, 20);
       
-      // middle lines
+      // dividers
       rect(0, 346, 2500 - moveCar - firstSize, 6);
       fill(#FFF500);
       rect(0, 327.5, 2500 - moveCar - firstSize, 3);
@@ -116,7 +116,8 @@ public class Race implements View, WeatherDelegate {
       rect(width - firstSize, 150, firstSize, 20);
       rect(width - firstSize, 530, firstSize, 20);
       
-      // middle lines
+      // dividers
+      fill(255);
       rect(0, 346, width, 6);
       fill(#FFF500);
       rect(0, 327.5, width, 3);
