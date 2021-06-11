@@ -17,9 +17,10 @@ public class Race implements View, WeatherDelegate {
   private boolean resetWeather = false;
 
   private boolean reload = true;
-  private boolean white = true;
 
   private Weather weather;
+  
+  private PImage baseLights;
 
   public Race(Car car) {
     this.car = car;
@@ -58,6 +59,7 @@ public class Race implements View, WeatherDelegate {
 
     loss = loadImage("lose_label.png");
     win = loadImage("win_label.png");
+    baseLights = loadImage("unlit_lights.png");
   }
 
   public void display() {
@@ -132,6 +134,9 @@ public class Race implements View, WeatherDelegate {
       rect(x, 150, width/60, 20);
       rect(x, 530, width/60, 20);
     }
+    
+    imageMode(CORNER);
+    image(baseLights, -(fraction * 600), 296);
 
     translate(width/2,height/2);
     rotate(radians(90));
