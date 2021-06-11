@@ -98,13 +98,29 @@ public class Race implements View, WeatherDelegate {
     
     if (2500 - moveCar < width) {
       fill(255);
-      rect(2500 - moveCar, 150, width/60, 400);
+      rect(2500 - moveCar, 150, width/60, 400); // finish line
+      
+      // last squares
       rect(2500 - moveCar - firstSize, 150, firstSize, 20);
       rect(2500 - moveCar - firstSize, 530, firstSize, 20);
+      
+      // middle lines
+      rect(0, 346, 2500 - moveCar - firstSize, 6);
+      fill(#FFF500);
+      rect(0, 327.5, 2500 - moveCar - firstSize, 3);
+      rect(0, 367.5, 2500 - moveCar - firstSize, 3);
+      
       x = 2500 - moveCar - firstSize;
     } else {
+      // last squares
       rect(width - firstSize, 150, firstSize, 20);
       rect(width - firstSize, 530, firstSize, 20);
+      
+      // middle lines
+      rect(0, 346, width, 6);
+      fill(#FFF500);
+      rect(0, 327.5, width, 3);
+      rect(0, 367.5, width, 3);
     }
     
     while (x > 0) {
