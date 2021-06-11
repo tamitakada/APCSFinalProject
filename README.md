@@ -14,8 +14,17 @@ https://docs.google.com/document/d/197xKZP5jWDhOhgxDIRfmsnOuFQcctcU6FOOGl_MOomk/
 Compile/run instructions:
 Please compile/run through Processing.
 
+How to Play:    
+Press the "Start" button to start the race.    
+Press the "Reset" button to change the weather.     
+As soon as the lights turn green, press the up arrow key to shift up.    
+Watch the RPM and shift up using the up arrow key before the RPM hits 10,000.     
+Keep shifting until the race finishes.     
+Upgrades and liveries can be bought using points, which are earned after winning a race.    
+     
+      
 Development Log
-
+    
 [5/26] Tami - I moved everything to Processing and added the set methods for each car part.  
 [5/26] Sadid - I created and wrote the CarParts class as well as all the individual classes for the car parts.   
 
