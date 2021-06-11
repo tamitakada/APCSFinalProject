@@ -44,3 +44,5 @@ Development Log
 [6/7] Sadid - I created the background for a longer race and made a button that would start a longer race.    
 
 [6/9] Sadid - I changed the point requirements for liveries and upgrades. I also added puddles on the track when the weather is rainy.
+
+[6/10] Tami - I switched the image to rendered shapes for the race background, and I made the shapes move according to the fraction of the race traveled by the user's car. I also made the faster car also move further than the slower car, and I added the finish line and dividing lines.
