@@ -21,6 +21,7 @@ public class Race implements View, WeatherDelegate {
   private Weather weather;
   
   private PImage baseLights;
+  private PImage finishLine;
 
   public Race(Car car) {
     this.car = car;
@@ -60,6 +61,7 @@ public class Race implements View, WeatherDelegate {
     loss = loadImage("lose_label.png");
     win = loadImage("win_label.png");
     baseLights = loadImage("unlit_lights.png");
+    finishLine = loadImage("finishLine.png");
   }
 
   public void display() {
@@ -100,7 +102,8 @@ public class Race implements View, WeatherDelegate {
     
     if (2500 - moveCar < width) {
       fill(255);
-      rect(2500 - moveCar, 150, width/60, 400); // finish line
+      imageMode(CENTER);
+      image(finishLine, 2500 - moveCar + 20, height/2); // finish line
       
       // last squares
       rect(2500 - moveCar - firstSize, 150, firstSize, 20);
