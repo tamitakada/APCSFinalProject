@@ -76,7 +76,7 @@ public class Race implements View, WeatherDelegate {
         }
         carTime = millis() - startTime;
 
-        if (comp.getGear() == 0 && millis() >= startTime+100) comp.incGear();
+        if (comp.getGear() == 0 && millis() >= startTime+150) comp.incGear();
         else if (comp.getRpm() > 9700) comp.incGear();
         else {
           if (comp.getGear() > 0) comp.setRpm(comp.getRpm()+50);
@@ -137,9 +137,9 @@ public class Race implements View, WeatherDelegate {
     rotate(radians(90));
     
     if (weather.getWeatherType() == WeatherType.RAINY) {
-       weather.getPuddle(-100,200);
+       weather.getPuddle(-100,(int)(200+moveCar));
        rotate(radians(90));
-       weather.getPuddle(-100,-100);
+       weather.getPuddle((int)(-100+moveCar),-100);
        rotate(radians(-90));
     }
 
