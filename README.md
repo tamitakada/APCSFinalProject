@@ -54,4 +54,5 @@ Development Log
 
 [6/9] Sadid - I changed the point requirements for liveries and upgrades. I also added puddles on the track when the weather is rainy.
 
-[6/10] Tami - I switched the image to rendered shapes for the race background, and I made the shapes move according to the fraction of the race traveled by the user's car. I added the elements from the original image back and made them move with the track.
+[6/10] Tami - I switched the image to rendered shapes for the race background, and I made the shapes move according to the fraction of the race traveled by the user's car. I added the elements from the original image back and made them move with the track.     
+[6/10] Sadid - I added How to Play to the ReadMe and made an updated UML diagram.   
