@@ -217,11 +217,11 @@ public class Race implements View, WeatherDelegate {
     } else if (index == 1) {
       light = 0;
       resetRaceSettings();
-      resetWeather = false;
+      resetWeather = true;
     } else if (index == 2) {
       light = -1;
       resetRaceSettings();
-      resetWeather = true;
+      resetWeather = false;
     }
   }
 
